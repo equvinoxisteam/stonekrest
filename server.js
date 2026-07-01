@@ -9,7 +9,7 @@ app.disable('x-powered-by');
 app.use(express.static(root, { maxAge: '1h', extensions: ['html'] }));
 
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', service: 'equvinoxis' });
+  res.status(200).json({ status: 'ok', service: 'stonekrest', client: 'equvinoxis' });
 });
 
 app.get('/', (req, res) => {
@@ -22,5 +22,5 @@ app.get('*', (req, res, next) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Equvinoxis running on http://0.0.0.0:${PORT}`);
+  console.log(`Stonekrest running on http://0.0.0.0:${PORT}`);
 });

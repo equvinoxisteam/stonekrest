@@ -1,9 +1,9 @@
-// Equvinoxis Business Banking Dashboard
+// Stonekrest Business Banking Dashboard (client: Equvinoxis)
 
 const initApp = () => {
   if (window.__equvinoxisInitialized) return;
   window.__equvinoxisInitialized = true;
-  console.log("✓ Equvinoxis app initializing...");
+  console.log("✓ Stonekrest app initializing...");
   // --- MOCK DATABASE STATE ---
   const state = {
     balances: {
@@ -455,7 +455,7 @@ const initApp = () => {
       openSubmenuForTab(resolved);
 
       const titleLabel = TAB_TITLES[resolved] || TAB_TITLES[raw] || resolved;
-      document.title = `${titleLabel} | Equvinoxis`;
+      document.title = `${titleLabel} | Stonekrest`;
 
       if (typeof lucide !== "undefined") lucide.createIcons();
     };
@@ -463,21 +463,35 @@ const initApp = () => {
     const closeMobileSidebar = () => {
       document.querySelector('.sidebar')?.classList.remove('open');
       document.getElementById('sidebar-backdrop')?.classList.remove('active');
-      document.body.style.overflow = '';
+      document.documentElement.classList.remove('nav-locked');
+      const menuBtn = document.getElementById('btn-mobile-menu');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
     };
 
     const openMobileSidebar = () => {
       document.querySelector('.sidebar')?.classList.add('open');
       document.getElementById('sidebar-backdrop')?.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('nav-locked');
+      const menuBtn = document.getElementById('btn-mobile-menu');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
     };
 
     document.getElementById('btn-mobile-menu')?.addEventListener('click', (e) => {
       e.stopPropagation();
-      openMobileSidebar();
+      const isOpen = document.querySelector('.sidebar')?.classList.contains('open');
+      if (isOpen) closeMobileSidebar();
+      else openMobileSidebar();
     });
 
     document.getElementById('sidebar-backdrop')?.addEventListener('click', closeMobileSidebar);
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 992) closeMobileSidebar();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileSidebar();
+    });
 
     const handleMenuNavigate = (menuItem, e) => {
       e.preventDefault();
