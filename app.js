@@ -1300,9 +1300,6 @@ const initApp = () => {
 
 // Equvinoxis Payments onboarding (Razorpay integration flow)
 function initializeEquvinoxisPayments() {
-  let paymentsStep = 1;
-  let paymentSuccess = false;
-
   function generateRandomKey(length, prefix = '') {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let key = prefix;
@@ -1340,17 +1337,6 @@ function initializeEquvinoxisPayments() {
     if (inlineKeySecret) inlineKeySecret.textContent = keySecret;
 
     document.getElementById('api-key-preview')?.classList.remove('hidden');
-    if (typeof lucide !== 'undefined') lucide.createIcons();
-  }
-
-  function goToPaymentsStep(step) {
-    paymentsStep = step;
-    document.querySelectorAll('.mercury-payments-step').forEach((el, idx) => {
-      el.classList.toggle('active', idx + 1 === step);
-    });
-    document.querySelectorAll('.mercury-payments-step-content').forEach(el => el.classList.add('hidden'));
-    const activeContent = document.getElementById(`mercury-payments-step-${step}`);
-    if (activeContent) activeContent.classList.remove('hidden');
     if (typeof lucide !== 'undefined') lucide.createIcons();
   }
 
@@ -1414,51 +1400,16 @@ function initializeEquvinoxisPayments() {
 
   function simulatePayment() {
     closeCheckoutModal();
-    paymentSuccess = true;
-    const finishBtn = document.getElementById('mercury-payments-btn-3');
-    if (finishBtn) {
-      finishBtn.disabled = false;
-      finishBtn.style.opacity = '1';
-    }
-  }
-
-  function showPaymentsDashboard() {
-    document.getElementById('mercury-payments-onboarding-container')?.classList.add('hidden');
-    document.getElementById('mercury-payments-dashboard')?.classList.remove('hidden');
   }
 
   document.getElementById('btn-mercury-generate-api-key')?.addEventListener('click', openTestKeysModal);
   document.getElementById('close-test-keys-modal')?.addEventListener('click', closeTestKeysModal);
   document.getElementById('btn-regenerate-key')?.addEventListener('click', updateTestKeysModal);
-  document.getElementById('mercury-payments-btn-1')?.addEventListener('click', () => goToPaymentsStep(2));
-  document.getElementById('mercury-payments-btn-2')?.addEventListener('click', () => goToPaymentsStep(3));
-  document.getElementById('mercury-payments-back-2')?.addEventListener('click', () => goToPaymentsStep(1));
-  document.getElementById('mercury-payments-back-3')?.addEventListener('click', () => goToPaymentsStep(2));
   document.getElementById('btn-test-razorpay-checkout')?.addEventListener('click', openCheckoutModal);
   document.getElementById('close-razorpay-modal')?.addEventListener('click', closeCheckoutModal);
   document.getElementById('pay-upi')?.addEventListener('click', simulatePayment);
   document.getElementById('pay-card')?.addEventListener('click', simulatePayment);
   document.getElementById('pay-netbanking')?.addEventListener('click', simulatePayment);
-  document.getElementById('mercury-payments-btn-3')?.addEventListener('click', showPaymentsDashboard);
-  document.getElementById('btn-disconnect-razorpay')?.addEventListener('click', () => {
-    document.getElementById('mercury-payments-dashboard')?.classList.add('hidden');
-    document.getElementById('mercury-payments-onboarding-container')?.classList.remove('hidden');
-    goToPaymentsStep(1);
-    paymentSuccess = false;
-    const finishBtn = document.getElementById('mercury-payments-btn-3');
-    if (finishBtn) {
-      finishBtn.disabled = true;
-      finishBtn.style.opacity = '0.5';
-    }
-  });
-  document.getElementById('btn-back-to-payments')?.addEventListener('click', () => {
-    document.getElementById('payments-table-view')?.classList.remove('hidden');
-    document.getElementById('payment-detail-view')?.classList.add('hidden');
-  });
-  document.querySelector('.payment-row')?.addEventListener('click', () => {
-    document.getElementById('payments-table-view')?.classList.add('hidden');
-    document.getElementById('payment-detail-view')?.classList.remove('hidden');
-  });
 
   setupCheckoutTabs();
 }

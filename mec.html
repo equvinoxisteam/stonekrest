@@ -46,6 +46,10 @@
         </div>
       </div>
       <div class="app-header-right header-actions">
+        <div class="header-demo-mark" aria-label="Stonekrest demo environment">
+          <span class="header-demo-brand">Stonekrest</span>
+          <span class="header-demo-pill">Demo</span>
+        </div>
         <button type="button" class="header-login-link" id="btn-login-signup">Login</button>
         <button type="button" class="header-icon-btn" id="btn-balance-toggle" title="Toggle balance visibility" aria-label="Toggle balance visibility">
           <i data-lucide="eye" id="balance-eye-icon"></i>
@@ -314,10 +318,11 @@
                 <a href="#cards" class="sk-link">Manage</a>
               </div>
               <div class="sk-panel-body">
-                <div class="sk-visa-card">
+                <div class="sk-visa-card sk-metal-card">
+                  <div class="sk-metal-shine" aria-hidden="true"></div>
                   <div class="sk-visa-top">
-                    <div class="sk-visa-chip" aria-hidden="true"></div>
-                    <span class="sk-visa-type">Platinum Business</span>
+                    <div class="sk-visa-chip sk-metal-chip" aria-hidden="true"></div>
+                    <span class="sk-visa-type">Metal Business</span>
                   </div>
                   <div class="sk-visa-number">4532 •••• •••• 4291</div>
                   <div class="sk-visa-bottom">
@@ -1088,443 +1093,110 @@
           </div>
         </section>
 
-        <!-- ================= EQUVINOXIS PAYMENTS TAB ================= -->
+        <!-- ================= PAYMENT GATEWAYS TAB ================= -->
         <section id="tab-mercury-payments" class="tab-panel demo-page">
-          <div class="mercury-payments-container" id="mercury-payments-onboarding-container">
-            <div class="mercury-payments-sidebar">
-              <div class="mercury-payments-sidebar-top">
-                <button class="btn btn-primary mercury-payments-api-btn" id="btn-mercury-generate-api-key" type="button">
-                  <i data-lucide="key"></i>
-                  Generate API Key
-                </button>
-              </div>
-
-              <div class="mercury-payments-sidebar-content">
-                <div class="mercury-payments-section-title">
-                  Onboarding:
-                </div>
-                <div class="mercury-payments-section-subtitle">
-                  Stonekrest Payments
-                </div>
-                <hr class="mercury-payments-divider">
-                
-                <div class="mercury-payments-step active" id="step-indicator-1">
-                  <span class="mercury-payments-step-number">1.</span>
-                  Basic details
-                </div>
-                <div class="mercury-payments-step" id="step-indicator-2">
-                  <span class="mercury-payments-step-number">2.</span>
-                  Business details
-                </div>
-                <div class="mercury-payments-step" id="step-indicator-3">
-                  <span class="mercury-payments-step-number">3.</span>
-                  Payment gateway
-                </div>
-              </div>
-
-              <div class="mercury-payments-sidebar-bottom">
-                <div class="mercury-payments-help-icon" title="Integration help">
-                  <i data-lucide="help-circle"></i>
-                </div>
-              </div>
+          <div class="panel-header-row pg-gateway-header">
+            <div>
+              <h1>Payment Gateways</h1>
+              <p class="subtitle">Stonekrest Payments for Equvinoxis — Razorpay, Paytm, and UPI settlements.</p>
             </div>
-
-            <div class="mercury-payments-main">
-              <div class="mercury-payments-main-header">
-                <div class="sidebar-brand">
-                  <svg class="stonekrest-logo mercury-logo" viewBox="0 0 150 28" aria-label="Stonekrest" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="stonekrestGrad" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#4d68eb"/>
-                        <stop offset="100%" stop-color="#7c3aed"/>
-                      </linearGradient>
-                    </defs>
-                    <text x="0" y="18" font-family="Arial, sans-serif" font-weight="800" font-size="20" fill="url(#stonekrestGrad)">stonekrest</text>
-                  </svg>
-                </div>
-                <span class="mercury-payments-subtitle">Payments</span>
-              </div>
-
-              <!-- Step 1: Verify Contact Details -->
-              <div class="mercury-payments-step-content" id="mercury-payments-step-1">
-                <h2 class="mercury-payments-step-title">
-                  Verify your Contact Details
-                </h2>
-                <p class="mercury-payments-step-desc">
-                  We require this to verify your identity. Your details will remain safe.
-                </p>
-
-                <div class="mercury-payments-form-group">
-                  <label class="mercury-payments-label">Mobile number</label>
-                  <div class="mercury-payments-input-container">
-                    <div class="mercury-payments-country-code">
-                      <span class="flag">🇮🇳</span>
-                      <span>+91</span>
-                    </div>
-                    <input type="text" class="mercury-payments-input" id="mercury-payments-mobile" value="98765 43210">
-                  </div>
-                </div>
-
-                <button class="mercury-payments-continue-btn" id="mercury-payments-btn-1">
-                  Continue
-                </button>
-              </div>
-
-              <!-- Step 2: Configure Razorpay -->
-              <div class="mercury-payments-step-content hidden" id="mercury-payments-step-2">
-                <h2 class="mercury-payments-step-title">
-                  Configure Razorpay Payment Gateway
-                </h2>
-                <p class="mercury-payments-step-desc">
-                  Enter your Razorpay API Credentials as shown in the tutorial. You can find these in your Razorpay Dashboard under Settings > API Keys.
-                </p>
-
-                <div class="api-key-preview hidden" id="api-key-preview">
-                  <div class="api-key-preview-header">
-                    <i data-lucide="shield-check"></i>
-                    <span>Generated API credentials</span>
-                  </div>
-                  <div class="api-key-preview-row">
-                    <span class="api-key-preview-label">Key ID</span>
-                    <code class="api-key-preview-value" id="inline-key-id">—</code>
-                    <button type="button" class="btn-copy-inline api-key-copy" data-copy-target="inline-key-id"><i data-lucide="copy" class="size-3"></i></button>
-                  </div>
-                  <div class="api-key-preview-row">
-                    <span class="api-key-preview-label">Key Secret</span>
-                    <code class="api-key-preview-value" id="inline-key-secret">••••••••••••••••</code>
-                    <button type="button" class="btn-copy-inline api-key-copy" data-copy-target="inline-key-secret"><i data-lucide="copy" class="size-3"></i></button>
-                  </div>
-                  <p class="api-key-preview-hint">Keys are stored locally for this demo. Use test mode before going live.</p>
-                </div>
-
-                <div class="mercury-payments-form-group">
-                  <label class="mercury-payments-label">Razorpay Key ID</label>
-                  <input type="text" class="mercury-payments-input mercury-payments-field" id="razorpay-key-id" placeholder="rzp_test_...">
-                </div>
-
-                <div class="mercury-payments-form-group">
-                  <label class="mercury-payments-label">Razorpay Key Secret</label>
-                  <input type="password" class="mercury-payments-input mercury-payments-field" id="razorpay-key-secret" placeholder="Enter key secret">
-                </div>
-
-                <div class="mercury-payments-form-group mercury-payments-checkbox-row">
-                  <input type="checkbox" id="razorpay-test-mode" checked>
-                  <label for="razorpay-test-mode">Enable Test Mode (Sandbox)</label>
-                </div>
-
-                <div style="margin-top: 25px; display: flex; gap: 15px;">
-                  <button class="btn btn-secondary" id="mercury-payments-back-2">
-                    Back
-                  </button>
-                  <button class="mercury-payments-continue-btn" id="mercury-payments-btn-2">
-                    Connect Gateway
-                  </button>
-                </div>
-              </div>
-
-              <!-- Step 3: Sandbox Verification & Checkout Test -->
-              <div class="mercury-payments-step-content hidden" id="mercury-payments-step-3">
-                <h2 class="mercury-payments-step-title">
-                  Gateway Testing & Verification
-                </h2>
-                <p class="mercury-payments-step-desc">
-                  Perform a simulated test transaction to verify checkout functions, callbacks, and finalize connection.
-                </p>
-
-                <div class="mercury-payments-form-group" style="background: rgba(77, 104, 235, 0.1); border: 1px dashed rgba(77, 104, 235, 0.3); padding: 20px; border-radius: var(--radius); max-width: 500px; margin-bottom: 25px;">
-                  <div style="font-weight: 600; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                    <i data-lucide="shield-check" style="color: var(--blue);"></i>
-                    Integration Ready (Test Mode)
-                  </div>
-                  <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
-                    Your Razorpay credentials are saved locally. Click below to launch the Razorpay Checkout simulation.
-                  </p>
-                  <button class="btn btn-primary" id="btn-test-razorpay-checkout" style="display: flex; align-items: center; gap: 8px;">
-                    <i data-lucide="external-link"></i> Simulate Test Checkout
-                  </button>
-                </div>
-
-                <div style="display: flex; gap: 15px;">
-                  <button class="btn btn-secondary" id="mercury-payments-back-3">
-                    Back
-                  </button>
-                  <button class="mercury-payments-continue-btn" id="mercury-payments-btn-3" disabled style="opacity: 0.5;">
-                    Activate & Finish
-                  </button>
-                </div>
-              </div>
+            <div class="pg-gateway-actions">
+              <button type="button" class="btn btn-primary" id="btn-mercury-generate-api-key">
+                <i data-lucide="key"></i> Generate API Key
+              </button>
+              <button type="button" class="btn btn-secondary" id="btn-test-razorpay-checkout">
+                <i data-lucide="external-link"></i> Test Checkout
+              </button>
             </div>
           </div>
 
-          <!-- Dashboard View -->
-          <div class="mercury-payments-dashboard hidden" id="mercury-payments-dashboard" style="padding: 24px; background: #f4f5f7; min-height: 100vh;">
-            <div style="max-width: 1200px; margin: 0 auto;">
-              <!-- Top Stats Cards -->
-              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
-                <!-- Collected Amount -->
-                <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px;">
-                  <div style="display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 14px; margin-bottom: 8px;">
-                    <span>Collected Amount</span>
-                    <span style="cursor: pointer;">ⓘ</span>
-                  </div>
-                  <div style="color: #111827; font-size: 36px; font-weight: 700; margin-bottom: 4px;">₹118.00</div>
-                  <div style="color: #6b7280; font-size: 14px;">from 1 captured payments</div>
-                </div>
+          <div class="api-key-preview hidden" id="api-key-preview">
+            <div class="api-key-preview-header">
+              <i data-lucide="shield-check"></i>
+              <span>Generated API credentials</span>
+            </div>
+            <div class="api-key-preview-row">
+              <span class="api-key-preview-label">Key ID</span>
+              <code class="api-key-preview-value" id="inline-key-id">—</code>
+              <button type="button" class="btn-copy-inline api-key-copy" data-copy-target="inline-key-id"><i data-lucide="copy" class="size-3"></i></button>
+            </div>
+            <div class="api-key-preview-row">
+              <span class="api-key-preview-label">Key Secret</span>
+              <code class="api-key-preview-value" id="inline-key-secret">••••••••••••••••</code>
+              <button type="button" class="btn-copy-inline api-key-copy" data-copy-target="inline-key-secret"><i data-lucide="copy" class="size-3"></i></button>
+            </div>
+            <p class="api-key-preview-hint">Test keys for demo only. Regenerate anytime from Generate API Key.</p>
+          </div>
 
-                <!-- Refunds -->
-                <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; cursor: pointer;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                      <span>🔄 Refunds</span>
-                      <span style="color: #9ca3af; cursor: pointer;">ⓘ</span>
-                    </div>
-                    <span style="color: #2563eb; font-size: 14px; font-weight: 500;">View All &gt;</span>
-                  </div>
-                  <div style="color: #111827; font-size: 28px; font-weight: 700; margin-top: 8px;">₹0.00</div>
-                  <div style="color: #6b7280; font-size: 14px;">0 processed</div>
-                </div>
+          <input type="hidden" id="razorpay-key-id" value="">
+          <input type="hidden" id="razorpay-key-secret" value="">
 
-                <!-- Disputes -->
-                <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; cursor: pointer;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                      <span>⚠️ Disputes</span>
-                      <span style="color: #9ca3af; cursor: pointer;">ⓘ</span>
-                    </div>
-                    <span style="color: #2563eb; font-size: 14px; font-weight: 500;">&gt;</span>
-                  </div>
-                  <div style="color: #111827; font-size: 28px; font-weight: 700; margin-top: 8px;">₹0.00</div>
-                  <div style="color: #6b7280; font-size: 14px;">0 open · 0 under-review</div>
-                </div>
+          <div class="metrics-grid pg-stats-grid">
+            <div class="metric-card">
+              <div class="metric-header"><span>Collected (MTD)</span></div>
+              <div class="metric-value text-green">₹4,28,268</div>
+              <div class="metric-footer"><span>142 captured payments</span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-header"><span>Refunds</span></div>
+              <div class="metric-value">₹0.00</div>
+              <div class="metric-footer"><span>0 processed</span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-header"><span>Disputes</span></div>
+              <div class="metric-value">₹0.00</div>
+              <div class="metric-footer"><span>0 open</span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-header"><span>Success rate</span></div>
+              <div class="metric-value text-green">98.4%</div>
+              <div class="metric-footer"><span>Razorpay · Paytm</span></div>
+            </div>
+          </div>
 
-                <!-- Failed Payments -->
-                <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                      <span>❌ Failed</span>
-                      <span style="color: #9ca3af; cursor: pointer;">ⓘ</span>
-                    </div>
-                  </div>
-                  <div style="color: #111827; font-size: 28px; font-weight: 700; margin-top: 8px;">0</div>
-                  <div style="color: #6b7280; font-size: 14px;">payments</div>
-                </div>
+          <div class="grid-card pg-payments-card">
+            <div class="card-header border-bottom">
+              <h3>Recent Payments</h3>
+              <div class="pg-filter-row">
+                <select class="pg-select"><option>Last 7 days</option><option>Last 30 days</option></select>
+                <select class="pg-select"><option>Status: All</option><option>Captured</option></select>
               </div>
-
-              <!-- Tabs (Payments, Orders, Upload Invoices) -->
-              <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px;">
-                <div style="display: flex; gap: 32px; border-bottom: 1px solid #e5e7eb; padding: 0 20px;">
-                  <button id="rp-dash-tab-payments" class="dashboard-tab active" style="background: none; border: none; padding: 16px 0; font-size: 20px; font-weight: 600; color: #00d166; border-bottom: 2px solid #00d166; cursor: pointer;">Payments</button>
-                  <button id="rp-dash-tab-orders" class="dashboard-tab" style="background: none; border: none; padding: 16px 0; font-size: 20px; font-weight: 600; color: #737373; cursor: pointer;">Orders</button>
-                  <button id="rp-dash-tab-invoices" class="dashboard-tab" style="background: none; border: none; padding: 16px 0; font-size: 20px; font-weight: 600; color: #737373; cursor: pointer;">Upload Invoices</button>
-                </div>
-
-                <!-- Payments Content -->
-                <div id="payments-content" style="padding: 20px;">
-                  <!-- Filters -->
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <div style="display: flex; gap: 12px;">
-                      <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;">
-                        <option>Last 7 days</option>
-                      </select>
-                      <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;">
-                        <option>Status: All</option>
-                      </select>
-                      <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;">
-                        <option>Payment method: All</option>
-                      </select>
-                    </div>
-                    <div style="display: flex; gap: 8px;">
-                      <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;">
-                        <option>Payment ID</option>
-                      </select>
-                      <input type="text" placeholder="Search" style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; width: 200px;">
-                      <button style="padding: 8px 16px; background: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer;">🔍</button>
-                    </div>
-                  </div>
-
-                  <!-- Payments Table -->
-                  <div id="payments-table-view">
-                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                      <thead style="background: #f9fafb;">
-                        <tr>
-                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Payment ID</th>
-                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Bank RRN</th>
-                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Customer detail</th>
-                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Created on</th>
-                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Amount</th>
-                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Status</th>
-                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;"></th>
-                        </tr>
-                      </thead>
-                      <tbody id="payments-table-body">
-                        <tr class="payment-row" data-payment-id="pay_RCJWoetDq0xyic" style="cursor: pointer; transition: background 0.2s;">
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #111827;">pay_RCJWoetDq0xyic</td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">--</td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                              <div style="background: #e0e7ff; width: 40px; height: 40px; border-radius: 8px;"></div>
-                              <span>Credit Card</span>
-                            </div>
-                          </td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">Tue Sep 2, 5:59pm</td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #111827; font-weight: 500;">₹118.00</td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6;">
-                            <span style="display: inline-flex; align-items: center; gap: 4px; background: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500;">
-                              <span style="width: 6px; height: 6px; background: #065f46; border-radius: 50%;"></span>
-                              Captured
-                            </span>
-                          </td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6;">
-                            <span style="color: #2563eb; font-weight: 500;">Details &gt;</span>
-                          </td>
-                        </tr>
-                        <tr class="payment-row" data-payment-id="pay_RB3KIQtFoEdX7E" style="cursor: pointer; transition: background 0.2s;">
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #111827;">pay_RB3KIQtFoEdX7E</td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">528198313133</td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                              <div style="background: #fecaca; width: 40px; height: 40px; border-radius: 8px;"></div>
-                              <span>UPI</span>
-                            </div>
-                          </td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">Fri Aug 29, 12:03pm</td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #111827; font-weight: 500;">₹20.00</td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6;">
-                            <span style="display: inline-flex; align-items: center; gap: 4px; background: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500;">
-                              <span style="width: 6px; height: 6px; background: #065f46; border-radius: 50%;"></span>
-                              Captured
-                            </span>
-                          </td>
-                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6;">
-                            <span style="color: #2563eb; font-weight: 500;">Details &gt;</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <!-- Payment Detail View -->
-                  <div id="payment-detail-view" class="hidden" style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
-                    <!-- Left Column -->
-                    <div>
-                      <!-- Amount Banner -->
-                      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 16px;">
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                          <div style="width: 48px; height: 48px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 28px;">✓</div>
-                          <div>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                              <span style="color: #111827; font-size: 28px; font-weight: 700;">₹118.00</span>
-                              <span style="display: inline-flex; align-items: center; gap: 4px; background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 100px; font-size: 12px; font-weight: 500;">
-                                <span style="width: 6px; height: 6px; background: #065f46; border-radius: 50%;"></span>
-                                Captured
-                              </span>
-                            </div>
-                            <div style="color: #6b7280; font-size: 14px; margin-top: 4px;">Created on: Tue Sep 2, 05:59pm</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Details Section -->
-                      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px;">
-                        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e7eb;">
-                          <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0;">Details</h3>
-                        </div>
-                        <div style="padding: 0;">
-                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
-                            <div style="display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 14px;">
-                              <span>Payment ID</span>
-                              <span style="cursor: pointer;">ⓘ</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                              <span style="color: #111827; font-size: 14px; font-weight: 500;">pay_RCJWoetDq0xyic</span>
-                              <span style="color: #2563eb; cursor: pointer;">📋</span>
-                            </div>
-                          </div>
-                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
-                            <div style="display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 14px;">
-                              <span>Bank RRN</span>
-                              <span style="cursor: pointer;">ⓘ</span>
-                            </div>
-                            <span style="color: #111827; font-size: 14px;">--</span>
-                          </div>
-                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
-                            <span style="color: #6b7280; font-size: 14px;">Order ID</span>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                              <span style="color: #2563eb; font-size: 14px; cursor: pointer; font-weight: 500;">order_RCjVfKZJ7UdALb</span>
-                              <span style="color: #2563eb; cursor: pointer;">📋</span>
-                            </div>
-                          </div>
-                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
-                            <span style="color: #6b7280; font-size: 14px;">Invoice ID</span>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                              <span style="color: #2563eb; font-size: 14px; cursor: pointer; font-weight: 500;">inv_RCjVe5RPiMoYdN</span>
-                              <span style="color: #2563eb; cursor: pointer;">📋</span>
-                            </div>
-                          </div>
-                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
-                            <span style="color: #6b7280; font-size: 14px;">Payment method</span>
-                            <span style="color: #111827; font-size: 14px;"><div style="background: #e0e7ff; width: 80px; height: 40px; border-radius: 8px; display: inline-block;"></div></span>
-                          </div>
-                          <div style="padding: 14px 20px;">
-                            <span style="color: #6b7280; font-size: 14px;">Customer details</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Right Column (Timeline) -->
-                    <div>
-                      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px;">
-                        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e7eb;">
-                          <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0;">Timeline</h3>
-                        </div>
-                        <div style="padding: 20px;">
-                          <!-- Timeline Items -->
-                          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
-                            <div style="width: 24px; height: 24px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 12px; flex-shrink: 0;">✓</div>
-                            <div>
-                              <div style="color: #111827; font-size: 14px; font-weight: 500;">Payment created</div>
-                              <div style="color: #6b7280; font-size: 12px; margin-top: 4px;">Tue, Sep 2, 2025 5:59 PM</div>
-                            </div>
-                          </div>
-                          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
-                            <div style="width: 24px; height: 24px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 12px; flex-shrink: 0;">✓</div>
-                            <div>
-                              <div style="color: #111827; font-size: 14px; font-weight: 500;">Payment authorized</div>
-                              <div style="color: #6b7280; font-size: 12px; margin-top: 4px;">Tue, Sep 2, 2025 5:59 PM</div>
-                            </div>
-                          </div>
-                          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
-                            <div style="width: 24px; height: 24px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 12px; flex-shrink: 0;">✓</div>
-                            <div>
-                              <div style="color: #111827; font-size: 14px; font-weight: 500;">Payment captured</div>
-                              <div style="color: #6b7280; font-size: 12px; margin-top: 4px;">Tue, Sep 2, 2025 5:59 PM</div>
-                            </div>
-                          </div>
-                          <div style="display: flex; gap: 12px;">
-                            <div style="width: 24px; height: 24px; background: #fef3c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d97706; font-size: 12px; flex-shrink: 0;">⏳</div>
-                            <div>
-                              <div style="color: #111827; font-size: 14px; font-weight: 500;">Settlement <span style="color: #6b7280; font-weight: 400;">(To be processed)</span></div>
-                              <div style="color: #6b7280; font-size: 12px; margin-top: 4px;">To be deposited by: Thu, Sep 4, 10:00 AM</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Refund Section -->
-                      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; margin-top: 16px; padding: 20px;">
-                        <div style="display: flex; align-items: center; gap: 6px; color: #374151; font-size: 14px; margin-bottom: 8px;">
-                          🔄 Initiate full, partial, or instant refunds to your customers
-                        </div>
-                        <button id="btn-issue-refund" style="width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 12px;">Issue refund</button>
-                      </div>
-
-                      <!-- Back Button -->
-                      <button id="btn-back-to-payments" style="width: 100%; padding: 10px; background: #f3f4f6; color: #111827; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; cursor: pointer; margin-top: 16px; font-weight: 500;">← Back to Payments</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table" id="pg-payments-table">
+                <thead>
+                  <tr>
+                    <th>Payment ID</th>
+                    <th>Method</th>
+                    <th>Created</th>
+                    <th>Status</th>
+                    <th class="text-right">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="font-mono">pay_RCJWoetDq0xyic</td>
+                    <td>Credit Card</td>
+                    <td>Tue Sep 2, 5:59pm</td>
+                    <td><span class="badge badge-green">Captured</span></td>
+                    <td class="text-right font-semibold">₹118.00</td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono">pay_RB3KIQtFoEdX7E</td>
+                    <td>UPI</td>
+                    <td>Fri Aug 29, 12:03pm</td>
+                    <td><span class="badge badge-green">Captured</span></td>
+                    <td class="text-right font-semibold">₹20.00</td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono">pay_RA8kLm2xPq9vN1</td>
+                    <td>Netbanking</td>
+                    <td>Thu Aug 28, 9:15am</td>
+                    <td><span class="badge badge-green">Captured</span></td>
+                    <td class="text-right font-semibold">₹12,450.00</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
