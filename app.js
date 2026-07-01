@@ -412,14 +412,6 @@ const initApp = () => {
       "ach-authorizations": "e-NACH Mandates",
     };
 
-    const PARENT_DEFAULT_TAB = {
-      "submenu-accounts": "accounts",
-      "submenu-transactions": "transactions",
-      "submenu-cards": "cards",
-      "submenu-payments": "payments",
-      "submenu-invoicing": "invoicing",
-    };
-
     const resolveTab = (tabName) => TAB_ALIASES[tabName] || tabName;
 
     const openSubmenuForTab = (tabName) => {
@@ -427,19 +419,13 @@ const initApp = () => {
       document.querySelectorAll(".menu-item-submenu").forEach((sub) => sub.classList.remove("open"));
       document.querySelectorAll(".menu-item-parent").forEach((p) => {
         p.classList.remove("open", "active");
-        const ch = p.querySelector(".menu-item-chevron");
-        if (ch) ch.style.transform = "rotate(0deg)";
       });
       const submenuId = TAB_SUBMENU[resolved];
       if (!submenuId) return;
       const submenu = document.getElementById(submenuId);
       const parent = document.querySelector(`[data-toggle="${submenuId}"]`);
       if (submenu) submenu.classList.add("open");
-      if (parent) {
-        parent.classList.add("open", "active");
-        const chevron = parent.querySelector(".menu-item-chevron");
-        if (chevron) chevron.style.transform = "rotate(180deg)";
-      }
+      if (parent) parent.classList.add("open", "active");
     };
 
     const switchToTab = (tabName) => {
@@ -486,47 +472,48 @@ const initApp = () => {
       document.body.style.overflow = 'hidden';
     };
 
-    document.getElementById('btn-mobile-menu')?.addEventListener('click', openMobileSidebar);
+    document.getElementById('btn-mobile-menu')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openMobileSidebar();
+    });
+
     document.getElementById('sidebar-backdrop')?.addEventListener('click', closeMobileSidebar);
 
+    const handleMenuNavigate = (menuItem, e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const tabName = (menuItem.getAttribute("href") || "").replace(/^#/, "") || menuItem.getAttribute("data-tab");
+      if (tabName) {
+        window.location.hash = tabName;
+        switchToTab(tabName);
+        closeMobileSidebar();
+      }
+    };
+
+    document.querySelectorAll(".menu-item:not(.menu-item-parent)").forEach(menuItem => {
+      menuItem.addEventListener("click", (e) => handleMenuNavigate(menuItem, e));
+    });
+
     document.querySelectorAll('.menu-item-parent').forEach(menu => {
-      menu.addEventListener('click', (e) => {
+      const toggleParent = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         const submenuId = menu.getAttribute('data-toggle');
         const submenu = document.getElementById(submenuId);
-        const chevron = menu.querySelector('.menu-item-chevron');
         const isOpen = submenu?.classList.contains('open');
         if (submenu) {
           if (isOpen) {
             submenu.classList.remove('open');
             menu.classList.remove('open');
-            if (chevron) chevron.style.transform = 'rotate(0deg)';
           } else {
             document.querySelectorAll('.menu-item-submenu').forEach(s => s.classList.remove('open'));
             document.querySelectorAll('.menu-item-parent').forEach(p => p.classList.remove('open'));
             submenu.classList.add('open');
             menu.classList.add('open');
-            if (chevron) chevron.style.transform = 'rotate(180deg)';
-            const defaultTab = PARENT_DEFAULT_TAB[submenuId];
-            if (defaultTab) {
-              window.location.hash = defaultTab;
-              switchToTab(defaultTab);
-            }
           }
         }
-      });
-    });
-    
-    document.querySelectorAll(".menu-item:not(.menu-item-parent)").forEach(menuItem => {
-      menuItem.addEventListener("click", (e) => {
-        e.preventDefault();
-        const tabName = (menuItem.getAttribute("href") || "").replace(/^#/, "") || menuItem.getAttribute("data-tab");
-        if (tabName) {
-          window.location.hash = tabName;
-          switchToTab(tabName);
-          closeMobileSidebar();
-        }
-      });
+      };
+      menu.addEventListener('click', toggleParent);
     });
 
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
