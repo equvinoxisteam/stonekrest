@@ -1,4 +1,4 @@
-# Stonekrest — India Business Banking Demo
+# Equvinoxis — India Business Banking Demo
 
 Dark-themed banking dashboard for Indian businesses: UPI, NEFT, RTGS, Razorpay, Paytm, international SWIFT/FIRC, and more.
 
@@ -26,7 +26,7 @@ Health check: `GET /health`
 ```bash
 git init
 git add .
-git commit -m "Stonekrest India banking dashboard"
+git commit -m "Equvinoxis India banking dashboard"
 git branch -M main
 git remote add origin https://github.com/equvinoxisteam/stonekrest.git
 git push -u origin main

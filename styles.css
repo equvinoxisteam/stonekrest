@@ -3557,6 +3557,7 @@ input:checked + .slider.round:before {
 
 /* ===== Stonekrest: aliases, utilities, light fixes ===== */
 .stonekrest-root,
+.equvinoxis-root,
 .mercury-root {
   display: flex;
   flex-direction: column;
@@ -3894,6 +3895,7 @@ input:checked + .slider.round:before {
 }
 
 .stonekrest-logo,
+.equvinoxis-logo,
 .mercury-logo {
   height: 28px;
   width: auto;

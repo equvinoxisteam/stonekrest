@@ -1,9 +1,9 @@
-// Stonekrest Business Banking Dashboard
+// Equvinoxis Business Banking Dashboard
 
 const initApp = () => {
-  if (window.__stonekrestInitialized) return;
-  window.__stonekrestInitialized = true;
-  console.log("✓ Stonekrest app initializing...");
+  if (window.__equvinoxisInitialized) return;
+  window.__equvinoxisInitialized = true;
+  console.log("✓ Equvinoxis app initializing...");
   // --- MOCK DATABASE STATE ---
   const state = {
     balances: {
@@ -15,7 +15,7 @@ const initApp = () => {
     },
     fxRates: { USD: 83.52, EUR: 90.0, GBP: 105.2 },
     cards: [
-      { id: "c1", label: "Stonekrest Business Debit", type: "physical", last4: "4291", holder: "STONEKREST", limit: 500000, spend: 79000, frozen: false },
+      { id: "c1", label: "Equvinoxis Business Debit", type: "physical", last4: "4291", holder: "EQUVINOXIS", limit: 500000, spend: 79000, frozen: false },
       { id: "c2", label: "Marketing Spend", type: "virtual", last4: "8821", holder: "Aniketh", limit: 1500000, spend: 1245000, frozen: false },
       { id: "c3", label: "SaaS Subscriptions", type: "virtual", last4: "1198", holder: "Finance Team", limit: 250000, spend: 198000, frozen: false }
     ],
@@ -351,7 +351,7 @@ const initApp = () => {
   // 2. STANDALONE MODULE ENGINE
   // ==========================================
   function initStandaloneMode() {
-    console.log("[Stonekrest] Running in Standalone Mode.");
+    console.log("[Equvinoxis] Running in Standalone Mode.");
 
     const TAB_ALIASES = {
       "neft-rtgs": "payments",
@@ -454,7 +454,7 @@ const initApp = () => {
         selectedTab.classList.add("active");
         document.querySelector(".main-layout")?.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        console.warn("[Stonekrest] Tab not found:", resolved);
+        console.warn("[Equvinoxis] Tab not found:", resolved);
         showToast(`Section "${raw}" is loading…`, "default");
       }
 
@@ -469,7 +469,7 @@ const initApp = () => {
       openSubmenuForTab(resolved);
 
       const titleLabel = TAB_TITLES[resolved] || TAB_TITLES[raw] || resolved;
-      document.title = `${titleLabel} | Stonekrest India`;
+      document.title = `${titleLabel} | Equvinoxis`;
 
       if (typeof lucide !== "undefined") lucide.createIcons();
     };
@@ -675,7 +675,7 @@ const initApp = () => {
     // Bind features static elements
     bindIndiaBanking();
 
-    initializeStonekrestPayments();
+    initializeEquvinoxisPayments();
 
     lucide.createIcons();
   }
@@ -824,7 +824,7 @@ const initApp = () => {
       box.innerHTML = `
         <i data-lucide="info" class="empty-state-icon"></i>
         <span class="font-medium text-white block margin-bottom-8">No Active Capital Line</span>
-        <p class="subtitle" style="max-width: 300px; font-size: 13px;">Stonekrest Inc. is eligible for up to $250,000. Use the calculator to request funding.</p>
+        <p class="subtitle" style="max-width: 300px; font-size: 13px;">Equvinoxis Inc. is eligible for up to $250,000. Use the calculator to request funding.</p>
       `;
     } else {
       const adv = state.activeAdvance;
@@ -938,7 +938,7 @@ const initApp = () => {
     });
 
     document.getElementById("btn-copy-upi")?.addEventListener("click", () => {
-      showToast("UPI ID copied: stonekrest@icici", "green");
+      showToast("UPI ID copied: equvinoxis@icici", "green");
     });
 
     document.getElementById("btn-sim-upi-collection")?.addEventListener("click", () => {
@@ -947,7 +947,7 @@ const initApp = () => {
       state.balances.checking += amt;
       state.transactions.unshift({
         id: "tx_" + Date.now(), date: "Today", type: "upi",
-        desc: "UPI collection — stonekrest@icici", asset: "INR", status: "Completed", amount: amt
+        desc: "UPI collection — equvinoxis@icici", asset: "INR", status: "Completed", amount: amt
       });
       state.gatewaySettlements.unshift({ date: "Today", gateway: "UPI", ref: "UPI-" + Date.now(), status: "Settled", amount: amt });
       showToast(`UPI collection of ${formatCurrency(amt)} credited`, "green");
@@ -1096,7 +1096,7 @@ const initApp = () => {
     } else if (method === "wire") {
       title = "New Express Wire Transfer";
       formHTML = `
-        <div class="form-group"><label>Recipient Legal Name</label><input type="text" id="pay-recipient" placeholder="e.g. Stonekrest Legal LLP" required /></div>
+        <div class="form-group"><label>Recipient Legal Name</label><input type="text" id="pay-recipient" placeholder="e.g. Equvinoxis Legal LLP" required /></div>
         <div class="form-row-2">
           <div class="form-group"><label>Deducting Account</label><select id="pay-source" required><option value="checking">Operating Checking ($${state.balances.checking.toLocaleString()})</option></select></div>
           <div class="form-group"><label>Wire Routing Number / SWIFT</label><input type="text" id="pay-routing" placeholder="Domestic Routing or SWIFT" required /></div>
@@ -1207,7 +1207,7 @@ const initApp = () => {
     if (!c) return;
     c.innerHTML = "";
     const items = [
-      { name: "Stonekrest Current Account", type: "INR · ICICI Bank", balance: state.balances.checking },
+      { name: "Equvinoxis Current Account", type: "INR · ICICI Bank", balance: state.balances.checking },
       { name: "Smart Savings Account", type: "INR · 7.1% p.a.", balance: state.balances.savings },
       { name: "Gateway Collections (unsettled)", type: "Razorpay · Paytm · UPI", balance: state.balances.gatewayCollections }
     ];
@@ -1255,8 +1255,8 @@ const initApp = () => {
   }
 };
 
-// Stonekrest Payments onboarding (Razorpay integration flow)
-function initializeStonekrestPayments() {
+// Equvinoxis Payments onboarding (Razorpay integration flow)
+function initializeEquvinoxisPayments() {
   let paymentsStep = 1;
   let paymentSuccess = false;
 

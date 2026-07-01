@@ -1,7 +1,7 @@
 {
-  "name": "stonekrest-demo",
+  "name": "equvinoxis-banking",
   "version": "1.0.0",
-  "description": "Stonekrest business banking demo",
+  "description": "Equvinoxis business banking demo",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
