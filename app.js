@@ -915,6 +915,20 @@ const initApp = () => {
   function bindIndiaBanking() {
     renderGatewaySettlements();
 
+    document.getElementById("btn-refresh-gateway-txn")?.addEventListener("click", renderGatewaySettlements);
+
+    document.addEventListener("click", (e) => {
+      const copyBtn = e.target.closest(".api-key-copy");
+      if (!copyBtn) return;
+      const targetId = copyBtn.getAttribute("data-copy-target");
+      const el = targetId ? document.getElementById(targetId) : null;
+      const text = el?.textContent?.trim();
+      if (!text || text === "—") return;
+      navigator.clipboard?.writeText(text).then(() => {
+        showToast("Copied to clipboard", "green");
+      }).catch(() => {});
+    });
+
     document.querySelectorAll(".sk-segmented").forEach(group => {
       group.querySelectorAll(".sk-segment").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -1015,6 +1029,24 @@ const initApp = () => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${row.date}</td><td>${row.gateway}</td><td class="font-mono">${row.ref}</td>
+        <td><span class="badge badge-green">${row.status}</span></td>
+        <td class="text-right font-semibold text-green">+${formatCurrency(row.amount)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+    renderMercuryPaymentsTxnTable();
+  }
+
+  function renderMercuryPaymentsTxnTable() {
+    const tbody = document.getElementById("mercury-payments-txn-tbody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+    state.gatewaySettlements.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${row.date}</td>
+        <td>${row.gateway}</td>
+        <td class="font-mono">${row.ref}</td>
         <td><span class="badge badge-green">${row.status}</span></td>
         <td class="text-right font-semibold text-green">+${formatCurrency(row.amount)}</td>
       `;
@@ -1259,12 +1291,32 @@ function initializeEquvinoxisPayments() {
   function updateTestKeysModal() {
     const keyId = generateRandomKey(14, 'rzp_test_');
     const keySecret = generateRandomKey(16);
+    const now = new Date();
+    const dateStr = now.toLocaleString('en-IN', {
+      day: 'numeric', month: 'short', year: 'numeric',
+      hour: 'numeric', minute: '2-digit', hour12: true
+    });
+
     const keyIdEl = document.getElementById('test-key-id');
+    const keySecretEl = document.getElementById('test-key-secret');
     if (keyIdEl) keyIdEl.textContent = keyId;
+    if (keySecretEl) keySecretEl.textContent = keySecret;
+
+    const dateEl = document.getElementById('test-key-generated-date');
+    if (dateEl) dateEl.textContent = `Generated on ${dateStr}`;
+
     const keyIdInput = document.getElementById('razorpay-key-id');
     const keySecretInput = document.getElementById('razorpay-key-secret');
     if (keyIdInput) keyIdInput.value = keyId;
     if (keySecretInput) keySecretInput.value = keySecret;
+
+    const inlineKeyId = document.getElementById('inline-key-id');
+    const inlineKeySecret = document.getElementById('inline-key-secret');
+    if (inlineKeyId) inlineKeyId.textContent = keyId;
+    if (inlineKeySecret) inlineKeySecret.textContent = keySecret;
+
+    document.getElementById('api-key-preview')?.classList.remove('hidden');
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   }
 
   function goToPaymentsStep(step) {
@@ -1351,7 +1403,7 @@ function initializeEquvinoxisPayments() {
     document.getElementById('mercury-payments-dashboard')?.classList.remove('hidden');
   }
 
-  document.getElementById('btn-mercury-get-test-keys')?.addEventListener('click', openTestKeysModal);
+  document.getElementById('btn-mercury-generate-api-key')?.addEventListener('click', openTestKeysModal);
   document.getElementById('close-test-keys-modal')?.addEventListener('click', closeTestKeysModal);
   document.getElementById('btn-regenerate-key')?.addEventListener('click', updateTestKeysModal);
   document.getElementById('mercury-payments-btn-1')?.addEventListener('click', () => goToPaymentsStep(2));

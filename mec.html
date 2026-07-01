@@ -1098,8 +1098,9 @@
           <div class="mercury-payments-container" id="mercury-payments-onboarding-container">
             <div class="mercury-payments-sidebar">
               <div class="mercury-payments-sidebar-top">
-                <button class="btn btn-secondary mercury-payments-logout-btn">
-                  Logout
+                <button class="btn btn-primary mercury-payments-api-btn" id="btn-mercury-generate-api-key" type="button">
+                  <i data-lucide="key"></i>
+                  Generate API Key
                 </button>
               </div>
 
@@ -1127,11 +1128,7 @@
               </div>
 
               <div class="mercury-payments-sidebar-bottom">
-                <button class="btn btn-secondary mercury-payments-test-keys-btn" id="btn-mercury-get-test-keys">
-                  <i data-lucide="flask-conical"></i>
-                  Get test keys
-                </button>
-                <div class="mercury-payments-help-icon">
+                <div class="mercury-payments-help-icon" title="Integration help">
                   <i data-lucide="help-circle"></i>
                 </div>
               </div>
@@ -1166,10 +1163,10 @@
                   <label class="mercury-payments-label">Mobile number</label>
                   <div class="mercury-payments-input-container">
                     <div class="mercury-payments-country-code">
-                      <span class="flag">🇺🇸</span>
-                      <span>+1</span>
+                      <span class="flag">🇮🇳</span>
+                      <span>+91</span>
                     </div>
-                    <input type="text" class="mercury-payments-input" id="mercury-payments-mobile" value="234 567 8901">
+                    <input type="text" class="mercury-payments-input" id="mercury-payments-mobile" value="98765 43210">
                   </div>
                 </div>
 
@@ -1187,19 +1184,37 @@
                   Enter your Razorpay API Credentials as shown in the tutorial. You can find these in your Razorpay Dashboard under Settings > API Keys.
                 </p>
 
-                <div class="mercury-payments-form-group" style="margin-bottom: 20px;">
+                <div class="api-key-preview hidden" id="api-key-preview">
+                  <div class="api-key-preview-header">
+                    <i data-lucide="shield-check"></i>
+                    <span>Generated API credentials</span>
+                  </div>
+                  <div class="api-key-preview-row">
+                    <span class="api-key-preview-label">Key ID</span>
+                    <code class="api-key-preview-value" id="inline-key-id">—</code>
+                    <button type="button" class="btn-copy-inline api-key-copy" data-copy-target="inline-key-id"><i data-lucide="copy" class="size-3"></i></button>
+                  </div>
+                  <div class="api-key-preview-row">
+                    <span class="api-key-preview-label">Key Secret</span>
+                    <code class="api-key-preview-value" id="inline-key-secret">••••••••••••••••</code>
+                    <button type="button" class="btn-copy-inline api-key-copy" data-copy-target="inline-key-secret"><i data-lucide="copy" class="size-3"></i></button>
+                  </div>
+                  <p class="api-key-preview-hint">Keys are stored locally for this demo. Use test mode before going live.</p>
+                </div>
+
+                <div class="mercury-payments-form-group">
                   <label class="mercury-payments-label">Razorpay Key ID</label>
-                  <input type="text" class="mercury-payments-input" id="razorpay-key-id" placeholder="rzp_test_..." style="width: 100%; max-width: 400px; padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); margin-top: 6px;">
+                  <input type="text" class="mercury-payments-input mercury-payments-field" id="razorpay-key-id" placeholder="rzp_test_...">
                 </div>
 
-                <div class="mercury-payments-form-group" style="margin-bottom: 20px;">
+                <div class="mercury-payments-form-group">
                   <label class="mercury-payments-label">Razorpay Key Secret</label>
-                  <input type="password" class="mercury-payments-input" id="razorpay-key-secret" placeholder="••••••••••••••••" style="width: 100%; max-width: 400px; padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); margin-top: 6px;">
+                  <input type="password" class="mercury-payments-input mercury-payments-field" id="razorpay-key-secret" placeholder="Enter key secret">
                 </div>
 
-                <div class="mercury-payments-form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
-                  <input type="checkbox" id="razorpay-test-mode" checked style="width: 18px; height: 18px; cursor: pointer;">
-                  <label for="razorpay-test-mode" style="color: var(--text-secondary); font-size: 14px; cursor: pointer;">Enable Test Mode (Sandbox)</label>
+                <div class="mercury-payments-form-group mercury-payments-checkbox-row">
+                  <input type="checkbox" id="razorpay-test-mode" checked>
+                  <label for="razorpay-test-mode">Enable Test Mode (Sandbox)</label>
                 </div>
 
                 <div style="margin-top: 25px; display: flex; gap: 15px;">
@@ -1515,6 +1530,27 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="mercury-payments-transactions grid-card">
+            <div class="card-header border-bottom">
+              <h3>Recent Gateway Transactions</h3>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-refresh-gateway-txn">Refresh</button>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table" id="mercury-payments-txn-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Gateway</th>
+                    <th>Reference</th>
+                    <th>Status</th>
+                    <th class="text-right">Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="mercury-payments-txn-tbody"></tbody>
+              </table>
             </div>
           </div>
         </section>
@@ -3290,51 +3326,53 @@
       </div>
     </div>
 
-    <!-- Get Test Keys Modal -->
-    <div id="test-keys-modal" class="razorpay-checkout-modal hidden" style="position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 1001; backdrop-filter: blur(4px);">
-      <div style="width: 100%; max-width: 700px; background: white; border-radius: 16px; overflow: hidden;">
-        <!-- Header -->
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 24px 32px; border-bottom: 1px solid #e5e7eb;">
-          <h2 style="font-size: 28px; font-weight: 700; color: #111827; margin: 0;">Test integrations now</h2>
-          <button id="close-test-keys-modal" style="background: none; border: none; color: #6b7280; cursor: pointer; padding: 8px; font-size: 24px;">✕</button>
+    <!-- API Keys Modal -->
+    <div id="test-keys-modal" class="api-keys-modal hidden">
+      <div class="api-keys-modal-panel">
+        <div class="api-keys-modal-header">
+          <div>
+            <span class="api-keys-modal-badge">Test Mode</span>
+            <h2>Your API Keys</h2>
+          </div>
+          <button type="button" id="close-test-keys-modal" class="api-keys-modal-close" aria-label="Close">
+            <i data-lucide="x"></i>
+          </button>
         </div>
 
-        <!-- Content -->
-        <div style="padding: 32px;">
-          <p style="color: #6b7280; font-size: 18px; line-height: 1.6; margin-bottom: 32px;">
-            Your API key allows your website to securely accept payments via Razorpay. Follow the <span style="color: #2563eb; cursor: pointer;">integration guide</span> to set up payments.
+        <div class="api-keys-modal-body">
+          <p class="api-keys-modal-desc">
+            Use these credentials to accept payments via Razorpay on your website or app. Follow the integration guide to complete setup.
           </p>
 
-          <!-- API Key -->
-          <div style="margin-bottom: 16px;">
-            <div id="test-key-id" style="color: #111827; font-size: 28px; font-weight: 700; font-family: 'Roboto Mono', monospace;">rzp_test_TONRgn4Z0umhmM</div>
+          <div class="api-keys-field">
+            <label>Key ID</label>
+            <div class="api-keys-value-row">
+              <code id="test-key-id">rzp_test_TONRgn4Z0umhmM</code>
+              <button type="button" class="btn-copy-inline api-key-copy" data-copy-target="test-key-id"><i data-lucide="copy" class="size-3"></i></button>
+            </div>
           </div>
 
-          <!-- API Secret (Masked) -->
-          <div style="margin-bottom: 24px;">
-            <div id="test-key-secret" style="color: #111827; font-size: 28px; font-weight: 700; font-family: 'Roboto Mono', monospace;">••••••••••••••••</div>
+          <div class="api-keys-field">
+            <label>Key Secret</label>
+            <div class="api-keys-value-row">
+              <code id="test-key-secret">••••••••••••••••</code>
+              <button type="button" class="btn-copy-inline api-key-copy" data-copy-target="test-key-secret"><i data-lucide="copy" class="size-3"></i></button>
+            </div>
           </div>
 
-          <!-- Generated Date -->
-          <div style="color: #6b7280; font-size: 16px; margin-bottom: 24px;">
+          <div class="api-keys-generated" id="test-key-generated-date">
             Generated on 11th Jun 2026 at 09:11 pm
           </div>
 
-          <!-- Warning Box -->
-          <div style="background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
-            <div style="display: flex; align-items: flex-start; gap: 12px;">
-              <span style="color: #d97706; font-size: 24px;">⚠️</span>
-              <p style="color: #92400e; font-size: 18px; line-height: 1.5; margin: 0;">
-                For security reasons, this key can only be downloaded once. If you have lost it you will have to regenerate a new one and update it everywhere.
-              </p>
-            </div>
+          <div class="api-keys-warning">
+            <i data-lucide="alert-triangle"></i>
+            <p>For security, download and store this secret now. If lost, regenerate a new key and update it everywhere.</p>
           </div>
         </div>
 
-        <!-- Footer -->
-        <div style="border-top: 1px solid #e5e7eb; padding: 24px 32px;">
-          <button id="btn-regenerate-key" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; border-radius: 16px; font-size: 22px; font-weight: 500; cursor: pointer;">
-            Regenerate
+        <div class="api-keys-modal-footer">
+          <button type="button" id="btn-regenerate-key" class="btn btn-primary btn-block">
+            <i data-lucide="refresh-cw"></i> Regenerate API Key
           </button>
         </div>
       </div>

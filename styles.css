@@ -1653,8 +1653,14 @@ h1 {
   gap: 12px;
 }
 
-select, input[type="text"], input[type="number"], input[type="range"] {
+select, input[type="text"], input[type="number"], input[type="password"], input[type="email"], input[type="range"] {
   outline: none;
+  color: var(--text-primary);
+}
+
+input[type="number"]::placeholder,
+input[type="text"]::placeholder {
+  color: var(--text-muted);
 }
 
 select {
@@ -3963,12 +3969,20 @@ input:checked + .slider.round:before {
 
 .form-group input,
 .form-group select {
-  background: #FFFFFF;
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted);
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  background: #FFFFFF;
+  background: rgba(0, 0, 0, 0.35);
+  border-color: var(--accent);
+  color: var(--text-primary);
 }
 
 .pricing-summary-box {
@@ -5522,7 +5536,8 @@ input:checked + .slider.round:before {
   display: block;
 }
 
-.demo-page .form-group input {
+.demo-page .form-group input,
+.demo-page .form-group select {
   width: 100%;
   padding: 10px 14px;
   border: 1px solid var(--border-color);
@@ -5531,6 +5546,15 @@ input:checked + .slider.round:before {
   font-family: inherit;
   background: var(--surface-2);
   color: var(--text-primary);
+}
+
+.demo-page .form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.demo-page .form-group select option {
+  background: #141414;
+  color: #f5f5f5;
 }
 
 @media (max-width: 768px) {
@@ -5575,9 +5599,46 @@ input:checked + .slider.round:before {
 }
 
 .theme-dark .demo-page .filter-row select,
-.theme-dark .demo-page .form-group input {
+.theme-dark .demo-page .form-group input,
+.theme-dark .demo-page .form-group select {
   background: #0a0a0a;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f5f5f5;
+}
+
+.theme-dark .demo-page .form-group input::placeholder {
+  color: #737373;
+}
+
+.theme-dark select,
+.theme-dark .form-group select,
+.theme-dark .filter-group select {
+  background: #0a0a0a;
+  color: #f5f5f5;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.theme-dark select option {
+  background: #141414;
+  color: #f5f5f5;
+}
+
+.theme-dark .pricing-summary-box {
+  background: rgba(0, 0, 0, 0.35);
   border-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-dark .pricing-summary-box .summary-row,
+.theme-dark .pricing-summary-box .summary-row span {
+  color: #e5e5e5;
+}
+
+.theme-dark .pricing-summary-box .text-secondary {
+  color: #a3a3a3 !important;
+}
+
+.theme-dark .pricing-summary-box .total-row span:last-child {
+  color: var(--accent);
 }
 
 .theme-dark .sidebar {
@@ -5666,6 +5727,7 @@ input:checked + .slider.round:before {
 
 .theme-dark .mercury-payments-container {
   background: #0b0b0b;
+  color: #f5f5f5;
 }
 
 .theme-dark .mercury-payments-sidebar {
@@ -5762,5 +5824,325 @@ input:checked + .slider.round:before {
 .theme-dark .toast {
   background: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f5f5f5;
+}
+
+/* ===== Payment gateway / API keys ===== */
+.mercury-payments-api-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  padding: 12px 16px;
+}
+
+.mercury-payments-field {
+  width: 100%;
+  max-width: 440px;
+  padding: 12px 14px;
+  margin-top: 6px;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #f5f5f5;
+  font-size: 14px;
+}
+
+.mercury-payments-field::placeholder {
+  color: #737373;
+}
+
+.mercury-payments-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.mercury-payments-checkbox-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.mercury-payments-checkbox-row label {
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.mercury-payments-transactions {
+  margin-top: 20px;
+}
+
+.mercury-payments-transactions .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.api-key-preview {
+  background: linear-gradient(160deg, rgba(0, 209, 102, 0.12) 0%, rgba(0, 209, 102, 0.04) 100%);
+  border: 1px dashed rgba(0, 209, 102, 0.35);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  max-width: 440px;
+}
+
+.api-key-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.api-key-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.api-key-preview-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  min-width: 72px;
+}
+
+.api-key-preview-value {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #f5f5f5;
+  word-break: break-all;
+}
+
+.api-key-preview-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.api-keys-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.api-keys-modal.hidden {
+  display: none !important;
+}
+
+.api-keys-modal-panel {
+  width: 100%;
+  max-width: 560px;
+  background: linear-gradient(165deg, #1a1a1a 0%, #0d0d0d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.api-keys-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.api-keys-modal-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0, 209, 102, 0.12);
+  border: 1px solid rgba(0, 209, 102, 0.25);
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.api-keys-modal-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.api-keys-modal-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #a3a3a3;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.api-keys-modal-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.api-keys-modal-body {
+  padding: 22px 24px;
+}
+
+.api-keys-modal-desc {
+  color: #a3a3a3;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.api-keys-field {
+  margin-bottom: 16px;
+}
+
+.api-keys-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #737373;
+  margin-bottom: 8px;
+}
+
+.api-keys-value-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.api-keys-value-row code {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #f5f5f5;
+  word-break: break-all;
+}
+
+.api-keys-generated {
+  font-size: 13px;
+  color: #737373;
+  margin-bottom: 16px;
+}
+
+.api-keys-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.api-keys-warning i {
+  color: #fbbf24;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.api-keys-warning p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #fcd34d;
+}
+
+.api-keys-modal-footer {
+  padding: 18px 24px 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .mercury-payments-section-title {
+  color: #737373;
+}
+
+.theme-dark .mercury-payments-section-subtitle,
+.theme-dark .mercury-payments-step-title {
+  color: #f5f5f5;
+}
+
+.theme-dark .mercury-payments-step-desc,
+.theme-dark .mercury-payments-label {
+  color: #a3a3a3;
+}
+
+.theme-dark .mercury-payments-step {
+  color: #a3a3a3;
+}
+
+.theme-dark .mercury-payments-step.active {
+  background: rgba(0, 209, 102, 0.1);
+  color: #f5f5f5;
+}
+
+.theme-dark .mercury-payments-input-container {
+  border-color: rgba(0, 209, 102, 0.35);
+  box-shadow: 0 0 0 2px rgba(0, 209, 102, 0.1);
+}
+
+.theme-dark .mercury-payments-country-code,
+.theme-dark .mercury-payments-input {
+  background: #0a0a0a;
+  color: #f5f5f5;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .mercury-payments-country-code {
+  border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-dark .mercury-payments-subtitle {
+  color: #737373;
+}
+
+.theme-dark .mercury-payments-dashboard select,
+.theme-dark .mercury-payments-dashboard input[type="text"],
+.theme-dark #mercury-payments-dashboard select,
+.theme-dark #mercury-payments-dashboard input[type="text"] {
+  background: #0a0a0a !important;
+  color: #f5f5f5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.theme-dark .mercury-payments-dashboard select option,
+.theme-dark #mercury-payments-dashboard select option {
+  background: #141414;
   color: #f5f5f5;
 }
