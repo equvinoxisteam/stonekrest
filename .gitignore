@@ -1,0 +1,14 @@
+node_modules/
+.env
+*.log
+.DS_Store
+deploy/
+*.bak
+*.bak2
+*.tmp
+app.js.bak
+app.js.bak2
+app.js.tmp
+mec.html.bak2
+index.html.bak2
+cleanup_duplicates.py

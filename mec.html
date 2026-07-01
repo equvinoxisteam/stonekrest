@@ -1,0 +1,3349 @@
+﻿<!DOCTYPE html>
+<html lang="en-IN">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Stonekrest | Business Banking for India</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <link rel="canonical" href="mec.html" />
+  <meta name="description" content="Stonekrest — UPI, NEFT, RTGS, Paytm, Razorpay, and international collections for Indian businesses." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="theme-dark">
+  <noscript data-nosnippet>
+    You need to enable JavaScript to use Stonekrest.
+  </noscript>
+
+  <!-- Dashboard Shell -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+  <div id="root" class="stonekrest-root mercury-root">
+
+    <!-- Unified app header — logo, search, actions aligned -->
+    <header class="app-shell-header">
+      <div class="app-header-left">
+        <button type="button" class="mobile-menu-btn" id="btn-mobile-menu" aria-label="Open navigation menu">
+          <i data-lucide="menu"></i>
+        </button>
+        <a href="#home" class="app-brand" data-tab="home" aria-label="Stonekrest home">
+          <span class="app-brand-name app-brand-silver">Stonekrest</span>
+          <span class="app-brand-tagline">Business Banking · India</span>
+        </a>
+      </div>
+      <div class="app-header-center">
+        <div class="search-bar app-search">
+          <i data-lucide="search"></i>
+          <input type="search" placeholder="Search UPI, NEFT, beneficiaries, invoices…" aria-label="Search" />
+          <kbd class="search-kbd">⌘K</kbd>
+        </div>
+      </div>
+      <div class="app-header-right header-actions">
+        <button type="button" class="header-login-link" id="btn-login-signup">Login</button>
+        <button type="button" class="header-icon-btn" id="btn-balance-toggle" title="Toggle balance visibility" aria-label="Toggle balance visibility">
+          <i data-lucide="eye" id="balance-eye-icon"></i>
+        </button>
+        <button type="button" class="header-icon-btn header-icon-btn-notify" title="Notifications" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+          <span class="bell-dot"></span>
+        </button>
+        <button type="button" class="btn btn-primary btn-move-money" id="btn-move-money">
+          <i data-lucide="plus"></i>
+          <span>Transfer Funds</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="app-body">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="main-sidebar">
+      <div class="org-selector">
+        <div class="org-details org-details-full">
+          <span class="org-name">Stonekrest India Pvt. Ltd.</span>
+          <span class="org-status">Mumbai · Live</span>
+        </div>
+        <i data-lucide="chevrons-up-down" class="org-chevron"></i>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a href="#home" class="menu-item active" data-tab="home">
+          <span>Home</span>
+        </a>
+        <div class="menu-item menu-item-parent" data-toggle="submenu-accounts">
+          <span>Accounts</span>
+          <i data-lucide="chevron-down" class="menu-item-chevron"></i>
+        </div>
+        <div class="menu-item-submenu" id="submenu-accounts">
+          <a href="#accounts" class="menu-item" data-tab="accounts">
+            <i data-lucide="credit-card"></i>
+            <span>Current Account</span>
+          </a>
+          <a href="#treasury" class="menu-item" data-tab="treasury">
+            <i data-lucide="building"></i>
+            <span>Treasury</span>
+          </a>
+          <a href="#financing" class="menu-item" data-tab="financing">
+            <i data-lucide="trending-up"></i>
+            <span>Financing</span>
+          </a>
+        </div>
+
+        <div class="menu-item menu-item-parent" data-toggle="submenu-transactions">
+          <span>Transactions</span>
+          <i data-lucide="chevron-down" class="menu-item-chevron"></i>
+        </div>
+        <div class="menu-item-submenu" id="submenu-transactions">
+          <a href="#transactions" class="menu-item" data-tab="transactions">
+            <i data-lucide="list"></i>
+            <span>Ledger</span>
+          </a>
+          <a href="#insights" class="menu-item" data-tab="insights">
+            <i data-lucide="trending-up"></i>
+            <span>Insights</span>
+          </a>
+          <a href="#accounting" class="menu-item" data-tab="accounting">
+            <i data-lucide="calculator"></i>
+            <span>Accounting</span>
+          </a>
+        </div>
+
+        <div class="menu-item menu-item-parent" data-toggle="submenu-cards">
+          <span>Cards</span>
+          <i data-lucide="chevron-down" class="menu-item-chevron"></i>
+        </div>
+        <div class="menu-item-submenu" id="submenu-cards">
+          <a href="#cards" class="menu-item" data-tab="cards">
+            <i data-lucide="credit-card"></i>
+            <span>Debit Cards</span>
+          </a>
+          <a href="#credit-card" class="menu-item" data-tab="credit-card">
+            <i data-lucide="credit-card"></i>
+            <span>Credit Card</span>
+          </a>
+        </div>
+
+        <div class="menu-item menu-item-parent" data-toggle="submenu-payments">
+          <span>Payments</span>
+          <i data-lucide="chevron-down" class="menu-item-chevron"></i>
+        </div>
+        <div class="menu-item-submenu" id="submenu-payments">
+          <a href="#payments" class="menu-item" data-tab="payments">
+            <i data-lucide="send"></i>
+            <span>Send Payments</span>
+          </a>
+          <a href="#mercury-payments" class="menu-item" data-tab="mercury-payments">
+            <i data-lucide="credit-card"></i>
+            <span>Payment Gateways</span>
+          </a>
+          <a href="#payment-gateways" class="menu-item" data-tab="payment-gateways">
+            <i data-lucide="wallet"></i>
+            <span>UPI & Wallets</span>
+          </a>
+          <a href="#international-receive" class="menu-item" data-tab="international-receive">
+            <i data-lucide="globe"></i>
+            <span>International Receive</span>
+          </a>
+          <a href="#bill-pay" class="menu-item" data-tab="bill-pay">
+            <i data-lucide="file-text"></i>
+            <span>Bill Pay</span>
+          </a>
+          <a href="#recipients" class="menu-item" data-tab="recipients">
+            <i data-lucide="users"></i>
+            <span>Recipients</span>
+          </a>
+          <a href="#taxes" class="menu-item" data-tab="taxes">
+            <i data-lucide="landmark"></i>
+            <span>Taxes</span>
+          </a>
+          <a href="#neft-rtgs" class="menu-item" data-tab="payments">
+            <i data-lucide="arrow-right-left"></i>
+            <span>NEFT / RTGS / IMPS</span>
+          </a>
+          <a href="#upi-mandates" class="menu-item" data-tab="payment-gateways">
+            <i data-lucide="smartphone"></i>
+            <span>UPI Mandates</span>
+          </a>
+        </div>
+
+        <div class="menu-item menu-item-parent" data-toggle="submenu-invoicing">
+          <span>Invoicing</span>
+          <i data-lucide="chevron-down" class="menu-item-chevron"></i>
+        </div>
+        <div class="menu-item-submenu" id="submenu-invoicing">
+          <a href="#invoicing" class="menu-item" data-tab="invoicing">
+            <i data-lucide="file-text"></i>
+            <span>Invoices</span>
+          </a>
+          <a href="#recurring-series" class="menu-item" data-tab="recurring-series">
+            <i data-lucide="refresh-cw"></i>
+            <span>Recurring Series</span>
+          </a>
+          <a href="#customers" class="menu-item" data-tab="customers">
+            <i data-lucide="user"></i>
+            <span>Customers</span>
+          </a>
+          <a href="#catalog" class="menu-item" data-tab="catalog">
+            <i data-lucide="grid"></i>
+            <span>Catalog</span>
+          </a>
+        </div>
+        
+        <div class="sidebar-divider">Bookmarks</div>
+
+        <a href="#ops-payroll" class="menu-item" data-tab="ops-payroll">
+          <span>Ops / Payroll</span>
+        </a>
+        <a href="#credit-card" class="menu-item" data-tab="credit-card">
+          <span>Credit Card</span>
+        </a>
+        <a href="#bill-pay" class="menu-item" data-tab="bill-pay">
+          <span>Bill Pay</span>
+        </a>
+        <a href="#transactions-insights" class="menu-item" data-tab="transactions-insights">
+          <span>Transactions Insights</span>
+        </a>
+        <a href="#reimbursements" class="menu-item" data-tab="reimbursements">
+          <span>Reimbursements</span>
+        </a>
+
+        <div class="sidebar-divider">Receive Money</div>
+
+        <a href="#receive-client" class="menu-item" data-tab="receive-client">
+          <span>From Clients (India)</span>
+        </a>
+        <a href="#international-receive" class="menu-item" data-tab="international-receive">
+          <span>SWIFT / FIRC</span>
+        </a>
+        <a href="#receive-platforms" class="menu-item" data-tab="receive-platforms">
+          <span>Marketplaces</span>
+        </a>
+        <a href="#receive-amazon" class="menu-item" data-tab="receive-amazon">
+          <span>Amazon India</span>
+        </a>
+
+        <div class="sidebar-divider">System</div>
+        
+        <a href="#settings" class="menu-item" data-tab="settings">
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="avatar">AK</div>
+          <div class="user-info">
+            <span class="username">Aniketh</span>
+            <span class="role">Administrator</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-layout">
+      <div class="content-container">
+
+        <!-- ================= HOME TAB ================= -->
+        <section id="tab-home" class="tab-panel active sk-home">
+          <header class="sk-hero">
+            <div class="sk-hero-main">
+              <p class="sk-eyebrow">India Business Account</p>
+              <h1>Good morning, <span class="sk-hero-name">Stonekrest India</span></h1>
+              <p class="sk-hero-desc">Your rupee balances, UPI collections, and international inflows — all in one place.</p>
+              <span class="sk-hero-accent-line" aria-hidden="true"></span>
+              <p class="sk-hero-footnote">Built for India + Payments + Global Growth</p>
+            </div>
+            <div class="sk-hero-actions">
+              <button type="button" class="sk-btn sk-btn-ghost" id="btn-hero-statement">Statement</button>
+              <button type="button" class="sk-btn sk-btn-primary" id="btn-hero-transfer">Quick Transfer</button>
+            </div>
+          </header>
+
+          <div class="sk-balance-grid">
+            <article class="sk-balance-card">
+              <div class="sk-balance-top">
+                <span class="sk-balance-label">Current Account (INR)</span>
+                <span class="sk-pill">DICGC Insured</span>
+              </div>
+              <div class="sk-balance-value filter-balance" data-amount="2483291.12">₹24,83,291.12</div>
+              <p class="sk-balance-meta sk-positive">+8.2% vs last month</p>
+            </article>
+
+            <article class="sk-balance-card">
+              <div class="sk-balance-top">
+                <span class="sk-balance-label">Smart Savings (INR)</span>
+                <span class="sk-pill sk-pill-accent">7.1% p.a.</span>
+              </div>
+              <div class="sk-balance-value filter-balance" data-amount="12500000.00">₹1,25,00,000.00</div>
+              <p class="sk-balance-meta">RBI-regulated partner bank</p>
+            </article>
+
+            <article class="sk-balance-card sk-balance-card-featured">
+              <div class="sk-balance-top">
+                <span class="sk-balance-label">UPI &amp; Gateway Collections</span>
+                <span class="sk-pill sk-pill-live">Live</span>
+              </div>
+              <div class="sk-balance-value filter-balance" id="gateway-collections-val" data-amount="1847200.00">₹18,47,200.00</div>
+              <p class="sk-balance-meta">Razorpay · Paytm · PhonePe · UPI</p>
+            </article>
+          </div>
+
+          <div class="sk-dashboard-grid">
+            <div class="sk-panel sk-panel-wide">
+              <div class="sk-panel-head">
+                <h2>Cash Flow Analytics</h2>
+                <div class="sk-segmented">
+                  <button type="button" class="sk-segment active">7D</button>
+                  <button type="button" class="sk-segment">30D</button>
+                  <button type="button" class="sk-segment">90D</button>
+                </div>
+              </div>
+              <div class="sk-chart-wrap">
+                <canvas id="cashFlowChart"></canvas>
+              </div>
+            </div>
+
+            <div class="sk-panel">
+              <div class="sk-panel-head">
+                <h2>Active Card</h2>
+                <a href="#cards" class="sk-link">Manage</a>
+              </div>
+              <div class="sk-panel-body">
+                <div class="sk-visa-card">
+                  <div class="sk-visa-top">
+                    <div class="sk-visa-chip" aria-hidden="true"></div>
+                    <span class="sk-visa-type">Platinum Business</span>
+                  </div>
+                  <div class="sk-visa-number">4532 •••• •••• 4291</div>
+                  <div class="sk-visa-bottom">
+                    <div class="sk-visa-holder">
+                      <span class="sk-visa-label">Cardholder</span>
+                      <span class="sk-visa-name">STONEKREST INDIA</span>
+                    </div>
+                    <div class="sk-visa-expiry">
+                      <span class="sk-visa-label">Valid thru</span>
+                      <span class="sk-visa-exp">09/29</span>
+                    </div>
+                    <div class="sk-visa-logo" aria-label="Visa">VISA</div>
+                  </div>
+                </div>
+                <div class="sk-card-limit">
+                  <div class="sk-limit-row">
+                    <span>Daily limit remaining</span>
+                    <span>₹4,21,000 / ₹5,00,000</span>
+                  </div>
+                  <div class="sk-progress">
+                    <div class="sk-progress-fill" style="width: 84.2%;"></div>
+                  </div>
+                  <div class="sk-card-actions">
+                    <button type="button" class="sk-btn sk-btn-ghost sk-btn-sm" id="btn-copy-card">Copy Number</button>
+                    <button type="button" class="sk-btn sk-btn-ghost sk-btn-sm sk-btn-danger" id="btn-freeze-card">Freeze</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sk-panel sk-panel-full">
+              <div class="sk-panel-head">
+                <h2>Recent Transactions</h2>
+                <a href="#transactions" class="sk-link">View Ledger</a>
+              </div>
+              <div class="sk-table-wrap">
+                <table class="sk-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Description</th>
+                      <th>Category</th>
+                      <th>Status</th>
+                      <th class="text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="home-transactions-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TRANSACTIONS TAB ================= -->
+        <section id="tab-transactions" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Transactions</h1>
+            </div>
+            <div class="header-actions">
+              <button class="btn btn-secondary">
+                <i data-lucide="layout-grid"></i> Match receipts
+              </button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <button class="btn btn-secondary btn-sm">
+              <i data-lucide="panel-left-close"></i> Data views
+            </button>
+            <button class="btn btn-secondary btn-sm">
+              <i data-lucide="filter"></i> Filters
+            </button>
+            <select style="padding: 8px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px;">
+              <option>Date</option>
+            </select>
+            <select style="padding: 8px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px;">
+              <option>Keyword</option>
+            </select>
+            <select style="padding: 8px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px;">
+              <option>Amount</option>
+            </select>
+            <div style="margin-left: auto; display: flex; gap: 12px;">
+              <button class="btn btn-secondary btn-sm">
+                <i data-lucide="spreadsheet"></i>
+              </button>
+              <button class="btn btn-secondary btn-sm">
+                <i data-lucide="upload"></i>
+              </button>
+              <button class="btn btn-secondary btn-sm">
+                <i data-lucide="download"></i>
+              </button>
+              <button class="btn btn-secondary">
+                Export all
+              </button>
+            </div>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 24px;">
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 24px;">
+                <div>
+                  <p style="color: var(--text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 4px;">Net change this month</p>
+                  <p style="color: var(--emerald); font-size: 28px; font-weight: 700;">₹23.30 L</p>
+                </div>
+                <div>
+                  <p style="color: var(--text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 4px;">Money in</p>
+                  <p style="color: var(--emerald); font-size: 28px; font-weight: 700;">₹30.11 L</p>
+                </div>
+                <div>
+                  <p style="color: var(--text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 4px;">Money out</p>
+                  <p style="color: var(--red); font-size: 28px; font-weight: 700;">-₹56.54 L</p>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox"></th>
+                      <th style="min-width: 150px;">To/From</th>
+                      <th>Amount</th>
+                      <th>Account</th>
+                      <th>Method</th>
+                      <th style="min-width: 150px;">Category</th>
+                      <th style="min-width: 120px;">GL Code</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="building-2"></i>
+                          </div>
+                          <span>Stonekrest Working Capital</span>
+                        </div>
+                      </td>
+                      <td class="text-red">-₹1.83 L</td>
+                      <td>Ops / Payroll</td>
+                      <td><i data-lucide="arrow-left"></i> Working Capital Loan...</td>
+                      <td>
+                        <select style="padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px;">
+                          <option></option>
+                          <option>Travel</option>
+                          <option>Software</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input type="text" style="padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px; width: 100px;">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <div style="width: 32px; height: 32px; border-radius: 50%; background: #4a5568; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                            P
+                          </div>
+                          <span>Payment from NASA <span class="badge badge-red" style="margin-left: 8px;">Failed</span></span>
+                        </div>
+                      </td>
+                      <td class="text-emerald">₹3.73 L</td>
+                      <td>AR</td>
+                      <td><i data-lucide="arrow-right"></i> Request or Invoice...</td>
+                      <td>
+                        <select style="padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px;">
+                          <option></option>
+                          <option>Travel</option>
+                          <option>Software</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input type="text" style="padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px; width: 100px;">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox"></td>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <div style="width: 32px; height: 32px; border-radius: 50%; background: #38a169; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                            A
+                          </div>
+                          <span>Payment from Stonekrest Inc.</span>
+                        </div>
+                      </td>
+                      <td class="text-emerald">₹16,600</td>
+                      <td>AR</td>
+                      <td><i data-lucide="arrow-right"></i> Request or Invoice...</td>
+                      <td>
+                        <select style="padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px;">
+                          <option></option>
+                          <option>Travel</option>
+                          <option>Software</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input type="text" style="padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-size: 14px; width: 100px;">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= INSIGHTS TAB ================= -->
+        <section id="tab-insights" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Insights <span class="badge badge-blue" style="margin-left: 8px; font-size: 12px; padding: 4px 8px;"><i data-lucide="bookmark" style="width: 12px; height: 12px;"></i></span></h1>
+            </div>
+            <div class="header-actions">
+              <button class="btn btn-secondary btn-sm">
+                <i data-lucide="message-square"></i> Share feedback
+              </button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <div style="display: flex; gap: 8px; background: var(--surface); border-radius: var(--radius); padding: 4px;">
+              <button class="btn btn-secondary btn-sm active" style="border: none; box-shadow: none;">Overview</button>
+              <button class="btn btn-secondary btn-sm" style="border: none; box-shadow: none;">Money in</button>
+              <button class="btn btn-secondary btn-sm" style="border: none; box-shadow: none;">Money out</button>
+              <button class="btn btn-secondary btn-sm" style="border: none; box-shadow: none;"><i data-lucide="ellipsis-vertical"></i></button>
+            </div>
+            <div style="margin-left: auto; display: flex; gap: 12px;">
+              <button class="btn btn-secondary btn-sm">
+                <i data-lucide="calendar"></i> Mar 3 - Today
+              </button>
+              <button class="btn btn-secondary btn-sm">
+                <i data-lucide="calendar"></i> Compare to
+              </button>
+            </div>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 24px;">
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 32px;">
+                <div>
+                  <p style="color: var(--text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 4px;">Net cashflow</p>
+                  <p style="color: var(--text-primary); font-size: 48px; font-weight: 700;">₹9.99 L</p>
+                </div>
+                <div>
+                  <p style="color: var(--text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 4px;">Money in</p>
+                  <p style="color: var(--emerald); font-size: 48px; font-weight: 700;">₹1.58 Cr</p>
+                </div>
+                <div>
+                  <p style="color: var(--text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 4px;">Money out</p>
+                  <p style="color: var(--red); font-size: 48px; font-weight: 700;">-₹75.55 L</p>
+                </div>
+              </div>
+
+              <div class="grid-card">
+                <div class="card-header border-bottom">
+                  <h3>Runway and cash position</h3>
+                </div>
+                <div class="card-body">
+                  <canvas id="insights-chart" style="width: 100%; height: 300px;"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= ACCOUNTING TAB ================= -->
+        <section id="tab-accounting" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Accounting</h1>
+              <p class="subtitle">Sync to QuickBooks, Xero, or export transactions.</p>
+            </div>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>Accounting Integrations</h3>
+            </div>
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px;">
+                  <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <i data-lucide="building" style="width: 48px; height: 48px; color: var(--text-primary);"></i>
+                    <div>
+                      <h4 style="margin: 0; font-size: 20px;">QuickBooks Online</h4>
+                      <p style="color: var(--text-secondary); margin: 4px 0 0;">Automatically sync transactions</p>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary">Connect</button>
+                </div>
+
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px;">
+                  <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <i data-lucide="list" style="width: 48px; height: 48px; color: var(--text-primary);"></i>
+                    <div>
+                      <h4 style="margin: 0; font-size: 20px;">Xero</h4>
+                      <p style="color: var(--text-secondary); margin: 4px 0 0;">Automatically sync transactions</p>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary">Connect</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>GL Codes</h3>
+              <p class="subtitle" style="margin: 0; font-size: 13px;">Manage your chart of accounts</p>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Account Name</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1000</td>
+                    <td>Current Account</td>
+                    <td>Asset</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>2000</td>
+                    <td>Accounts Receivable</td>
+                    <td>Asset</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>3000</td>
+                    <td>Accounts Payable</td>
+                    <td>Liability</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>4000</td>
+                    <td>Operating Expenses</td>
+                    <td>Expense</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>5000</td>
+                    <td>Revenue</td>
+                    <td>Income</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PAYMENTS TAB ================= -->
+        <section id="tab-payments" class="tab-panel demo-page">
+          <div class="welcome-row">
+            <h1>Send Money in India</h1>
+            <p class="subtitle">UPI, IMPS, NEFT, RTGS, and bulk payouts — RBI-compliant rails with instant status.</p>
+          </div>
+
+          <div class="payment-options-grid india-pay-grid">
+            <div class="payment-method-card payment-method-featured" id="pay-card-upi">
+              <div class="method-badge">Most used</div>
+              <i data-lucide="smartphone" class="method-icon text-blue"></i>
+              <h3>UPI Transfer</h3>
+              <p>Pay vendors and staff via UPI ID or QR. Settled in seconds, 24×7 including holidays.</p>
+              <button class="btn btn-primary btn-sm btn-select-payment" data-method="upi">Send via UPI</button>
+            </div>
+
+            <div class="payment-method-card" id="pay-card-neft">
+              <i data-lucide="landmark" class="method-icon text-blue"></i>
+              <h3>NEFT / RTGS / IMPS</h3>
+              <p>Domestic bank transfers with IFSC. IMPS instant, NEFT hourly batches, RTGS for ₹2L+.</p>
+              <button class="btn btn-primary btn-sm btn-select-payment" data-method="neft">Bank Transfer</button>
+            </div>
+
+            <div class="payment-method-card" id="pay-card-paytm">
+              <i data-lucide="wallet" class="method-icon text-yellow"></i>
+              <h3>Paytm for Business</h3>
+              <p>Disburse to Paytm wallets or linked bank accounts. Ideal for gig payouts and refunds.</p>
+              <button class="btn btn-primary btn-sm btn-select-payment" data-method="paytm">Paytm Payout</button>
+            </div>
+
+            <div class="payment-method-card" id="pay-card-bulk">
+              <i data-lucide="users" class="method-icon text-purple"></i>
+              <h3>Bulk Salary & Vendor</h3>
+              <p>Upload CSV for payroll, GST, and vendor runs. Auto-reconciliation with your ledger.</p>
+              <button class="btn btn-secondary btn-sm" id="btn-bulk-payout">Upload CSV</button>
+            </div>
+          </div>
+
+          <div class="grid-card payment-form-wrapper hidden" id="payment-form-card">
+            <div class="card-header">
+              <h3 id="payment-form-title">Payment Form</h3>
+              <button class="close-form-btn" id="btn-close-payment-form">&times;</button>
+            </div>
+            
+            <form id="active-payment-form" class="payment-form">
+              <!-- Dynamically populated via app.js -->
+            </form>
+          </div>
+        </section>
+
+        <!-- ================= CARDS TAB ================= -->
+        <section id="tab-cards" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Debit Cards</h1>
+              <p class="subtitle">Issue, manage, and freeze physical or virtual debit cards instantly.</p>
+            </div>
+            <button class="btn btn-primary" id="btn-issue-card">
+              <i data-lucide="plus"></i> Issue New Card
+            </button>
+          </div>
+
+          <div class="cards-list-grid" id="cards-list-container">
+            <!-- Dynamic Cards Loaded here -->
+          </div>
+        </section>
+
+        <!-- ================= BILL PAY TAB ================= -->
+        <section id="tab-bill-pay" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Bill Pay</h1>
+              <p class="subtitle">Pay bills online, schedule recurring payments, and track payment history.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> New Bill
+            </button>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>Upcoming Bills</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Bill</th>
+                    <th>Vendor</th>
+                    <th>Due Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Office Rent</td>
+                    <td>Premier Properties</td>
+                    <td>Jun 15, 2026</td>
+                    <td>₹7.05 L</td>
+                    <td><span class="badge badge-yellow">Due Soon</span></td>
+                    <td><button class="btn btn-primary btn-sm">Pay Now</button></td>
+                  </tr>
+                  <tr>
+                    <td>Internet</td>
+                    <td>Comcast Business</td>
+                    <td>Jun 20, 2026</td>
+                    <td>₹16,517</td>
+                    <td><span class="badge badge-blue">Scheduled</span></td>
+                    <td><button class="btn btn-secondary btn-sm">Edit</button></td>
+                  </tr>
+                  <tr>
+                    <td>Software Subscription</td>
+                    <td>Adobe</td>
+                    <td>Jun 25, 2026</td>
+                    <td>₹28,967</td>
+                    <td><span class="badge badge-blue">Scheduled</span></td>
+                    <td><button class="btn btn-secondary btn-sm">Edit</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>Payment History</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Bill</th>
+                    <th>Vendor</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Jun 1, 2026</td>
+                    <td>Electricity</td>
+                    <td>BESCOM</td>
+                    <td>₹35,275</td>
+                    <td>NEFT</td>
+                    <td><span class="badge badge-green">Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td>May 28, 2026</td>
+                    <td>Phone</td>
+                    <td>Jio Business</td>
+                    <td>₹20,667</td>
+                    <td>UPI</td>
+                    <td><span class="badge badge-green">Paid</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= RECIPIENTS TAB ================= -->
+        <section id="tab-recipients" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Recipients</h1>
+              <p class="subtitle">Manage your saved payment recipients.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> Add Recipient
+            </button>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Bank</th>
+                    <th>Last Paid</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Stonekrest Inc.</td>
+                    <td>Vendor</td>
+                    <td>Wells Fargo</td>
+                    <td>May 28, 2026</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">Pay</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>John Smith</td>
+                    <td>Employee</td>
+                    <td>Chase</td>
+                    <td>May 15, 2026</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">Pay</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tech Supplies Inc.</td>
+                    <td>Vendor</td>
+                    <td>Bank of America</td>
+                    <td>May 10, 2026</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">Pay</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAXES TAB ================= -->
+        <section id="tab-taxes" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Taxes</h1>
+              <p class="subtitle">Manage tax payments and filings.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> New Tax Payment
+            </button>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>Tax Payments</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Period</th>
+                    <th>Due Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Payroll Tax</td>
+                    <td>Q2 2026</td>
+                    <td>Jun 15, 2026</td>
+                    <td>₹10.33 L</td>
+                    <td><span class="badge badge-yellow">Due Soon</span></td>
+                    <td><button class="btn btn-primary btn-sm">Pay Now</button></td>
+                  </tr>
+                  <tr>
+                    <td>Sales Tax</td>
+                    <td>May 2026</td>
+                    <td>Jun 20, 2026</td>
+                    <td>₹2.66 L</td>
+                    <td><span class="badge badge-blue">Scheduled</span></td>
+                    <td><button class="btn btn-secondary btn-sm">Edit</button></td>
+                  </tr>
+                  <tr>
+                    <td>Estimated Income Tax</td>
+                    <td>Q2 2026</td>
+                    <td>Jun 15, 2026</td>
+                    <td>₹7.39 L</td>
+                    <td><span class="badge badge-yellow">Due Soon</span></td>
+                    <td><button class="btn btn-primary btn-sm">Pay Now</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>Tax Documents</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Document</th>
+                    <th>Year</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>W-2</td>
+                    <td>2025</td>
+                    <td>Jan 31, 2026</td>
+                    <td><button class="btn btn-secondary btn-sm">Download</button></td>
+                  </tr>
+                  <tr>
+                    <td>1099-NEC</td>
+                    <td>2025</td>
+                    <td>Jan 31, 2026</td>
+                    <td><button class="btn btn-secondary btn-sm">Download</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= INWARD SWIFT MANDATES ================= -->
+        <section id="tab-wire-drawdowns" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Inward SWIFT Mandates</h1>
+              <p class="subtitle">Pre-authorize recurring international inward remittances (FEMA-compliant).</p>
+            </div>
+            <button class="btn btn-primary"><i data-lucide="plus"></i> New Mandate</button>
+          </div>
+          <div class="grid-card">
+            <div class="card-body">
+              <table class="data-table">
+                <thead><tr><th>Remitter</th><th>Max (USD)</th><th>Frequency</th><th>Expires</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Acme Global LLC (US)</td><td>$50,000</td><td>Monthly</td><td>Dec 31, 2026</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                    <td><button class="btn btn-secondary btn-sm">View</button></td>
+                  </tr>
+                  <tr>
+                    <td>TechServe GmbH (EU)</td><td>€25,000</td><td>Quarterly</td><td>Jun 30, 2026</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                    <td><button class="btn btn-secondary btn-sm">View</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= e-NACH MANDATES ================= -->
+        <section id="tab-ach-authorizations" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>e-NACH &amp; UPI Mandates</h1>
+              <p class="subtitle">Authorize recurring debits and UPI AutoPay for vendors and subscriptions.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> New Mandate
+            </button>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Max Amount</th>
+                    <th>Frequency</th>
+                    <th>Expires</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Razorpay Subscriptions</td>
+                    <td>₹10,00,000</td>
+                    <td>Weekly</td>
+                    <td>Dec 31, 2026</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-secondary btn-sm">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Zoho Payroll</td>
+                    <td>₹20,00,000</td>
+                    <td>Bi-weekly</td>
+                    <td>Dec 31, 2026</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-secondary btn-sm">Revoke</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= STONEKREST PAYMENTS TAB ================= -->
+        <section id="tab-mercury-payments" class="tab-panel demo-page">
+          <div class="mercury-payments-container" id="mercury-payments-onboarding-container">
+            <div class="mercury-payments-sidebar">
+              <div class="mercury-payments-sidebar-top">
+                <button class="btn btn-secondary mercury-payments-logout-btn">
+                  Logout
+                </button>
+              </div>
+
+              <div class="mercury-payments-sidebar-content">
+                <div class="mercury-payments-section-title">
+                  Onboarding:
+                </div>
+                <div class="mercury-payments-section-subtitle">
+                  Stonekrest Payments
+                </div>
+                <hr class="mercury-payments-divider">
+                
+                <div class="mercury-payments-step active" id="step-indicator-1">
+                  <span class="mercury-payments-step-number">1.</span>
+                  Basic details
+                </div>
+                <div class="mercury-payments-step" id="step-indicator-2">
+                  <span class="mercury-payments-step-number">2.</span>
+                  Business details
+                </div>
+                <div class="mercury-payments-step" id="step-indicator-3">
+                  <span class="mercury-payments-step-number">3.</span>
+                  Payment gateway
+                </div>
+              </div>
+
+              <div class="mercury-payments-sidebar-bottom">
+                <button class="btn btn-secondary mercury-payments-test-keys-btn" id="btn-mercury-get-test-keys">
+                  <i data-lucide="flask-conical"></i>
+                  Get test keys
+                </button>
+                <div class="mercury-payments-help-icon">
+                  <i data-lucide="help-circle"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="mercury-payments-main">
+              <div class="mercury-payments-main-header">
+                <div class="sidebar-brand">
+                  <svg class="stonekrest-logo mercury-logo" viewBox="0 0 150 28" aria-label="Stonekrest" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="stonekrestGrad" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#4d68eb"/>
+                        <stop offset="100%" stop-color="#7c3aed"/>
+                      </linearGradient>
+                    </defs>
+                    <text x="0" y="18" font-family="Arial, sans-serif" font-weight="800" font-size="20" fill="url(#stonekrestGrad)">stonekrest</text>
+                  </svg>
+                </div>
+                <span class="mercury-payments-subtitle">Payments</span>
+              </div>
+
+              <!-- Step 1: Verify Contact Details -->
+              <div class="mercury-payments-step-content" id="mercury-payments-step-1">
+                <h2 class="mercury-payments-step-title">
+                  Verify your Contact Details
+                </h2>
+                <p class="mercury-payments-step-desc">
+                  We require this to verify your identity. Your details will remain safe.
+                </p>
+
+                <div class="mercury-payments-form-group">
+                  <label class="mercury-payments-label">Mobile number</label>
+                  <div class="mercury-payments-input-container">
+                    <div class="mercury-payments-country-code">
+                      <span class="flag">🇺🇸</span>
+                      <span>+1</span>
+                    </div>
+                    <input type="text" class="mercury-payments-input" id="mercury-payments-mobile" value="234 567 8901">
+                  </div>
+                </div>
+
+                <button class="mercury-payments-continue-btn" id="mercury-payments-btn-1">
+                  Continue
+                </button>
+              </div>
+
+              <!-- Step 2: Configure Razorpay -->
+              <div class="mercury-payments-step-content hidden" id="mercury-payments-step-2">
+                <h2 class="mercury-payments-step-title">
+                  Configure Razorpay Payment Gateway
+                </h2>
+                <p class="mercury-payments-step-desc">
+                  Enter your Razorpay API Credentials as shown in the tutorial. You can find these in your Razorpay Dashboard under Settings > API Keys.
+                </p>
+
+                <div class="mercury-payments-form-group" style="margin-bottom: 20px;">
+                  <label class="mercury-payments-label">Razorpay Key ID</label>
+                  <input type="text" class="mercury-payments-input" id="razorpay-key-id" placeholder="rzp_test_..." style="width: 100%; max-width: 400px; padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); margin-top: 6px;">
+                </div>
+
+                <div class="mercury-payments-form-group" style="margin-bottom: 20px;">
+                  <label class="mercury-payments-label">Razorpay Key Secret</label>
+                  <input type="password" class="mercury-payments-input" id="razorpay-key-secret" placeholder="••••••••••••••••" style="width: 100%; max-width: 400px; padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); margin-top: 6px;">
+                </div>
+
+                <div class="mercury-payments-form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                  <input type="checkbox" id="razorpay-test-mode" checked style="width: 18px; height: 18px; cursor: pointer;">
+                  <label for="razorpay-test-mode" style="color: var(--text-secondary); font-size: 14px; cursor: pointer;">Enable Test Mode (Sandbox)</label>
+                </div>
+
+                <div style="margin-top: 25px; display: flex; gap: 15px;">
+                  <button class="btn btn-secondary" id="mercury-payments-back-2">
+                    Back
+                  </button>
+                  <button class="mercury-payments-continue-btn" id="mercury-payments-btn-2">
+                    Connect Gateway
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 3: Sandbox Verification & Checkout Test -->
+              <div class="mercury-payments-step-content hidden" id="mercury-payments-step-3">
+                <h2 class="mercury-payments-step-title">
+                  Gateway Testing & Verification
+                </h2>
+                <p class="mercury-payments-step-desc">
+                  Perform a simulated test transaction to verify checkout functions, callbacks, and finalize connection.
+                </p>
+
+                <div class="mercury-payments-form-group" style="background: rgba(77, 104, 235, 0.1); border: 1px dashed rgba(77, 104, 235, 0.3); padding: 20px; border-radius: var(--radius); max-width: 500px; margin-bottom: 25px;">
+                  <div style="font-weight: 600; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="shield-check" style="color: var(--blue);"></i>
+                    Integration Ready (Test Mode)
+                  </div>
+                  <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+                    Your Razorpay credentials are saved locally. Click below to launch the Razorpay Checkout simulation.
+                  </p>
+                  <button class="btn btn-primary" id="btn-test-razorpay-checkout" style="display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="external-link"></i> Simulate Test Checkout
+                  </button>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                  <button class="btn btn-secondary" id="mercury-payments-back-3">
+                    Back
+                  </button>
+                  <button class="mercury-payments-continue-btn" id="mercury-payments-btn-3" disabled style="opacity: 0.5;">
+                    Activate & Finish
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard View -->
+          <div class="mercury-payments-dashboard hidden" id="mercury-payments-dashboard" style="padding: 24px; background: #f4f5f7; min-height: 100vh;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+              <!-- Top Stats Cards -->
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+                <!-- Collected Amount -->
+                <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px;">
+                  <div style="display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 14px; margin-bottom: 8px;">
+                    <span>Collected Amount</span>
+                    <span style="cursor: pointer;">ⓘ</span>
+                  </div>
+                  <div style="color: #111827; font-size: 36px; font-weight: 700; margin-bottom: 4px;">₹118.00</div>
+                  <div style="color: #6b7280; font-size: 14px;">from 1 captured payments</div>
+                </div>
+
+                <!-- Refunds -->
+                <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; cursor: pointer;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                      <span>🔄 Refunds</span>
+                      <span style="color: #9ca3af; cursor: pointer;">ⓘ</span>
+                    </div>
+                    <span style="color: #2563eb; font-size: 14px; font-weight: 500;">View All &gt;</span>
+                  </div>
+                  <div style="color: #111827; font-size: 28px; font-weight: 700; margin-top: 8px;">₹0.00</div>
+                  <div style="color: #6b7280; font-size: 14px;">0 processed</div>
+                </div>
+
+                <!-- Disputes -->
+                <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; cursor: pointer;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                      <span>⚠️ Disputes</span>
+                      <span style="color: #9ca3af; cursor: pointer;">ⓘ</span>
+                    </div>
+                    <span style="color: #2563eb; font-size: 14px; font-weight: 500;">&gt;</span>
+                  </div>
+                  <div style="color: #111827; font-size: 28px; font-weight: 700; margin-top: 8px;">₹0.00</div>
+                  <div style="color: #6b7280; font-size: 14px;">0 open · 0 under-review</div>
+                </div>
+
+                <!-- Failed Payments -->
+                <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                      <span>❌ Failed</span>
+                      <span style="color: #9ca3af; cursor: pointer;">ⓘ</span>
+                    </div>
+                  </div>
+                  <div style="color: #111827; font-size: 28px; font-weight: 700; margin-top: 8px;">0</div>
+                  <div style="color: #6b7280; font-size: 14px;">payments</div>
+                </div>
+              </div>
+
+              <!-- Tabs (Payments, Orders, Upload Invoices) -->
+              <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px;">
+                <div style="display: flex; gap: 32px; border-bottom: 1px solid #e5e7eb; padding: 0 20px;">
+                  <button id="rp-dash-tab-payments" class="dashboard-tab active" style="background: none; border: none; padding: 16px 0; font-size: 20px; font-weight: 600; color: #00d166; border-bottom: 2px solid #00d166; cursor: pointer;">Payments</button>
+                  <button id="rp-dash-tab-orders" class="dashboard-tab" style="background: none; border: none; padding: 16px 0; font-size: 20px; font-weight: 600; color: #737373; cursor: pointer;">Orders</button>
+                  <button id="rp-dash-tab-invoices" class="dashboard-tab" style="background: none; border: none; padding: 16px 0; font-size: 20px; font-weight: 600; color: #737373; cursor: pointer;">Upload Invoices</button>
+                </div>
+
+                <!-- Payments Content -->
+                <div id="payments-content" style="padding: 20px;">
+                  <!-- Filters -->
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div style="display: flex; gap: 12px;">
+                      <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;">
+                        <option>Last 7 days</option>
+                      </select>
+                      <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;">
+                        <option>Status: All</option>
+                      </select>
+                      <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;">
+                        <option>Payment method: All</option>
+                      </select>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                      <select style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; background: white;">
+                        <option>Payment ID</option>
+                      </select>
+                      <input type="text" placeholder="Search" style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; width: 200px;">
+                      <button style="padding: 8px 16px; background: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer;">🔍</button>
+                    </div>
+                  </div>
+
+                  <!-- Payments Table -->
+                  <div id="payments-table-view">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                      <thead style="background: #f9fafb;">
+                        <tr>
+                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Payment ID</th>
+                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Bank RRN</th>
+                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Customer detail</th>
+                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Created on</th>
+                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Amount</th>
+                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;">Status</th>
+                          <th style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #374151; border-bottom: 1px solid #e5e7eb;"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="payments-table-body">
+                        <tr class="payment-row" data-payment-id="pay_RCJWoetDq0xyic" style="cursor: pointer; transition: background 0.2s;">
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #111827;">pay_RCJWoetDq0xyic</td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">--</td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                              <div style="background: #e0e7ff; width: 40px; height: 40px; border-radius: 8px;"></div>
+                              <span>Credit Card</span>
+                            </div>
+                          </td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">Tue Sep 2, 5:59pm</td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #111827; font-weight: 500;">₹118.00</td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6;">
+                            <span style="display: inline-flex; align-items: center; gap: 4px; background: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500;">
+                              <span style="width: 6px; height: 6px; background: #065f46; border-radius: 50%;"></span>
+                              Captured
+                            </span>
+                          </td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6;">
+                            <span style="color: #2563eb; font-weight: 500;">Details &gt;</span>
+                          </td>
+                        </tr>
+                        <tr class="payment-row" data-payment-id="pay_RB3KIQtFoEdX7E" style="cursor: pointer; transition: background 0.2s;">
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #111827;">pay_RB3KIQtFoEdX7E</td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">528198313133</td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                              <div style="background: #fecaca; width: 40px; height: 40px; border-radius: 8px;"></div>
+                              <span>UPI</span>
+                            </div>
+                          </td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #374151;">Fri Aug 29, 12:03pm</td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; color: #111827; font-weight: 500;">₹20.00</td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6;">
+                            <span style="display: inline-flex; align-items: center; gap: 4px; background: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500;">
+                              <span style="width: 6px; height: 6px; background: #065f46; border-radius: 50%;"></span>
+                              Captured
+                            </span>
+                          </td>
+                          <td style="padding: 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6;">
+                            <span style="color: #2563eb; font-weight: 500;">Details &gt;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Payment Detail View -->
+                  <div id="payment-detail-view" class="hidden" style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+                    <!-- Left Column -->
+                    <div>
+                      <!-- Amount Banner -->
+                      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                          <div style="width: 48px; height: 48px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 28px;">✓</div>
+                          <div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                              <span style="color: #111827; font-size: 28px; font-weight: 700;">₹118.00</span>
+                              <span style="display: inline-flex; align-items: center; gap: 4px; background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 100px; font-size: 12px; font-weight: 500;">
+                                <span style="width: 6px; height: 6px; background: #065f46; border-radius: 50%;"></span>
+                                Captured
+                              </span>
+                            </div>
+                            <div style="color: #6b7280; font-size: 14px; margin-top: 4px;">Created on: Tue Sep 2, 05:59pm</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Details Section -->
+                      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px;">
+                        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e7eb;">
+                          <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0;">Details</h3>
+                        </div>
+                        <div style="padding: 0;">
+                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
+                            <div style="display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 14px;">
+                              <span>Payment ID</span>
+                              <span style="cursor: pointer;">ⓘ</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                              <span style="color: #111827; font-size: 14px; font-weight: 500;">pay_RCJWoetDq0xyic</span>
+                              <span style="color: #2563eb; cursor: pointer;">📋</span>
+                            </div>
+                          </div>
+                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
+                            <div style="display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 14px;">
+                              <span>Bank RRN</span>
+                              <span style="cursor: pointer;">ⓘ</span>
+                            </div>
+                            <span style="color: #111827; font-size: 14px;">--</span>
+                          </div>
+                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
+                            <span style="color: #6b7280; font-size: 14px;">Order ID</span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                              <span style="color: #2563eb; font-size: 14px; cursor: pointer; font-weight: 500;">order_RCjVfKZJ7UdALb</span>
+                              <span style="color: #2563eb; cursor: pointer;">📋</span>
+                            </div>
+                          </div>
+                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
+                            <span style="color: #6b7280; font-size: 14px;">Invoice ID</span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                              <span style="color: #2563eb; font-size: 14px; cursor: pointer; font-weight: 500;">inv_RCjVe5RPiMoYdN</span>
+                              <span style="color: #2563eb; cursor: pointer;">📋</span>
+                            </div>
+                          </div>
+                          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #f3f4f6;">
+                            <span style="color: #6b7280; font-size: 14px;">Payment method</span>
+                            <span style="color: #111827; font-size: 14px;"><div style="background: #e0e7ff; width: 80px; height: 40px; border-radius: 8px; display: inline-block;"></div></span>
+                          </div>
+                          <div style="padding: 14px 20px;">
+                            <span style="color: #6b7280; font-size: 14px;">Customer details</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Right Column (Timeline) -->
+                    <div>
+                      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px;">
+                        <div style="padding: 16px 20px; border-bottom: 1px solid #e5e7eb;">
+                          <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin: 0;">Timeline</h3>
+                        </div>
+                        <div style="padding: 20px;">
+                          <!-- Timeline Items -->
+                          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+                            <div style="width: 24px; height: 24px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 12px; flex-shrink: 0;">✓</div>
+                            <div>
+                              <div style="color: #111827; font-size: 14px; font-weight: 500;">Payment created</div>
+                              <div style="color: #6b7280; font-size: 12px; margin-top: 4px;">Tue, Sep 2, 2025 5:59 PM</div>
+                            </div>
+                          </div>
+                          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+                            <div style="width: 24px; height: 24px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 12px; flex-shrink: 0;">✓</div>
+                            <div>
+                              <div style="color: #111827; font-size: 14px; font-weight: 500;">Payment authorized</div>
+                              <div style="color: #6b7280; font-size: 12px; margin-top: 4px;">Tue, Sep 2, 2025 5:59 PM</div>
+                            </div>
+                          </div>
+                          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+                            <div style="width: 24px; height: 24px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 12px; flex-shrink: 0;">✓</div>
+                            <div>
+                              <div style="color: #111827; font-size: 14px; font-weight: 500;">Payment captured</div>
+                              <div style="color: #6b7280; font-size: 12px; margin-top: 4px;">Tue, Sep 2, 2025 5:59 PM</div>
+                            </div>
+                          </div>
+                          <div style="display: flex; gap: 12px;">
+                            <div style="width: 24px; height: 24px; background: #fef3c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d97706; font-size: 12px; flex-shrink: 0;">⏳</div>
+                            <div>
+                              <div style="color: #111827; font-size: 14px; font-weight: 500;">Settlement <span style="color: #6b7280; font-weight: 400;">(To be processed)</span></div>
+                              <div style="color: #6b7280; font-size: 12px; margin-top: 4px;">To be deposited by: Thu, Sep 4, 10:00 AM</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Refund Section -->
+                      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; margin-top: 16px; padding: 20px;">
+                        <div style="display: flex; align-items: center; gap: 6px; color: #374151; font-size: 14px; margin-bottom: 8px;">
+                          🔄 Initiate full, partial, or instant refunds to your customers
+                        </div>
+                        <button id="btn-issue-refund" style="width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 12px;">Issue refund</button>
+                      </div>
+
+                      <!-- Back Button -->
+                      <button id="btn-back-to-payments" style="width: 100%; padding: 10px; background: #f3f4f6; color: #111827; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; cursor: pointer; margin-top: 16px; font-weight: 500;">← Back to Payments</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= INVOICING TAB ================= -->
+        <section id="tab-invoicing" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Invoices</h1>
+              <p class="subtitle">Create, send, and manage your invoices.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> New Invoice
+            </button>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>Recent Invoices</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Invoice #</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Due Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>INV-2026-001</td>
+                    <td>Stonekrest Inc.</td>
+                    <td>Jun 1, 2026</td>
+                    <td>Jun 15, 2026</td>
+                    <td>₹12.45 L</td>
+                    <td><span class="badge badge-yellow">Due Soon</span></td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-primary btn-sm">Send Reminder</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>INV-2026-002</td>
+                    <td>Tech Services Inc.</td>
+                    <td>Jun 5, 2026</td>
+                    <td>Jun 20, 2026</td>
+                    <td>₹7.05 L</td>
+                    <td><span class="badge badge-blue">Sent</span></td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>INV-2026-003</td>
+                    <td>Global Solutions</td>
+                    <td>May 28, 2026</td>
+                    <td>Jun 11, 2026</td>
+                    <td>₹9.96 L</td>
+                    <td><span class="badge badge-green">Paid</span></td>
+                    <td><button class="btn btn-secondary btn-sm">View</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= RECURRING SERIES TAB ================= -->
+        <section id="tab-recurring-series" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Recurring Series</h1>
+              <p class="subtitle">Create and manage recurring invoice series.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> New Recurring Series
+            </button>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Series</th>
+                    <th>Customer</th>
+                    <th>Frequency</th>
+                    <th>Next Invoice</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Monthly Retainer</td>
+                    <td>Stonekrest Inc.</td>
+                    <td>Monthly</td>
+                    <td>Jul 1, 2026</td>
+                    <td>₹4.15 L</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Quarterly Support</td>
+                    <td>Tech Services Inc.</td>
+                    <td>Quarterly</td>
+                    <td>Jul 1, 2026</td>
+                    <td>₹2.49 L</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= CUSTOMERS TAB ================= -->
+        <section id="tab-customers" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Customers</h1>
+              <p class="subtitle">Manage your customer database.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> Add Customer
+            </button>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Last Invoice</th>
+                    <th>Balance</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Stonekrest Inc.</td>
+                    <td>billing@acme.com</td>
+                    <td>(555) 123-4567</td>
+                    <td>Jun 1, 2026</td>
+                    <td>₹12.45 L</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tech Services Inc.</td>
+                    <td>finance@techservices.com</td>
+                    <td>(555) 987-6543</td>
+                    <td>Jun 5, 2026</td>
+                    <td>₹7.05 L</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Global Solutions</td>
+                    <td>ap@globalsolutions.com</td>
+                    <td>(555) 456-7890</td>
+                    <td>May 28, 2026</td>
+                    <td>₹0</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">View</button>
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= CATALOG TAB ================= -->
+        <section id="tab-catalog" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Catalog</h1>
+              <p class="subtitle">Manage your products and services for quick invoicing.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> Add Item
+            </button>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Software License</td>
+                    <td>Service</td>
+                    <td>₹82,917</td>
+                    <td>Annual software license subscription</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                        <button class="btn btn-secondary btn-sm">Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Consulting (Hourly)</td>
+                    <td>Service</td>
+                    <td>₹12,450</td>
+                    <td>Professional consulting services per hour</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                        <button class="btn btn-secondary btn-sm">Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Support Package</td>
+                    <td>Service</td>
+                    <td>₹24,817</td>
+                    <td>Monthly technical support package</td>
+                    <td>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm">Edit</button>
+                        <button class="btn btn-secondary btn-sm">Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= ACCOUNTS TAB ================= -->
+        <section id="tab-accounts" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Current &amp; Savings Accounts</h1>
+              <p class="subtitle">Manage your INR business accounts and FEMA-compliant foreign currency balances.</p>
+            </div>
+            <button class="btn btn-secondary" id="btn-create-account">
+              <i data-lucide="plus"></i> Add Account
+            </button>
+          </div>
+
+          <div class="accounts-detailed-list" id="accounts-list-container">
+            <div class="grid-card" style="margin-bottom: 24px;">
+              <div class="card-body">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                  <div style="display: flex; gap: 16px;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #4d68eb, #6366f1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+                      <i data-lucide="building"></i>
+                    </div>
+                    <div>
+                      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin: 0;">Stonekrest Current Account</h3>
+                      <p style="font-size: 14px; color: #6b7280; margin: 4px 0 0;">•••• 1038 • INR • HDFC Bank</p>
+                    </div>
+                  </div>
+                  <span class="badge badge-green" style="padding: 4px 12px;">Active</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px;">
+                  <div>
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 600;">Current Balance</span>
+                    <div style="font-size: 32px; font-weight: 700; color: #111827; margin-top: 8px;">₹1.25 L</div>
+                  </div>
+                  <div>
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 600;">Available Balance</span>
+                    <div style="font-size: 32px; font-weight: 700; color: #0f9d58; margin-top: 8px;">₹1.25 L</div>
+                  </div>
+                  <div>
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 600;">Monthly Volume</span>
+                    <div style="font-size: 32px; font-weight: 700; color: #111827; margin-top: 8px;">₹35.60 L</div>
+                  </div>
+                </div>
+                <div style="margin-top: 24px; display: flex; gap: 12px;">
+                  <button class="btn btn-primary">
+                    <i data-lucide="send"></i> Send Money
+                  </button>
+                  <button class="btn btn-secondary">
+                    <i data-lucide="download"></i> Download Statement
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-card" style="margin-bottom: 24px;">
+              <div class="card-body">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                  <div style="display: flex; gap: 16px;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+                      <i data-lucide="globe"></i>
+                    </div>
+                    <div>
+                      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin: 0;">FEMA Escrow (USD)</h3>
+                      <p style="font-size: 14px; color: #6b7280; margin: 4px 0 0;">•••• 5678 • USD • Export collections</p>
+                    </div>
+                  </div>
+                  <span class="badge badge-green" style="padding: 4px 12px;">Active</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px;">
+                  <div>
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 600;">Current Balance</span>
+                    <div style="font-size: 32px; font-weight: 700; color: #111827; margin-top: 8px;">$42,800.00</div>
+                  </div>
+                  <div>
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 600;">Available Balance</span>
+                    <div style="font-size: 32px; font-weight: 700; color: #0f9d58; margin-top: 8px;">$42,800.00</div>
+                  </div>
+                  <div>
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 600;">Monthly Volume</span>
+                    <div style="font-size: 32px; font-weight: 700; color: #111827; margin-top: 8px;">€12,450.00</div>
+                  </div>
+                </div>
+                <div style="margin-top: 24px; display: flex; gap: 12px;">
+                  <button class="btn btn-primary">
+                    <i data-lucide="send"></i> Send Money
+                  </button>
+                  <button class="btn btn-secondary">
+                    <i data-lucide="download"></i> Download Statement
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-card">
+              <div class="card-header border-bottom">
+                <h3>Recent Transactions</h3>
+              </div>
+              <div class="card-body" style="padding: 0;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Description</th>
+                      <th>Category</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Jun 12, 2026</td>
+                      <td>Payment to Infosys BPO</td>
+                      <td>Vendors</td>
+                      <td style="color: #ef4444;">-₹7,05,500</td>
+                      <td><span class="badge badge-green">Completed</span></td>
+                    </tr>
+                    <tr>
+                      <td>Jun 10, 2026</td>
+                      <td>Deposit from TCS Ltd</td>
+                      <td>Income</td>
+                      <td style="color: #0f9d58;">+₹20,75,000</td>
+                      <td><span class="badge badge-green">Completed</span></td>
+                    </tr>
+                    <tr>
+                      <td>Jun 8, 2026</td>
+                      <td>Monthly Software Subscription</td>
+                      <td>Software</td>
+                      <td style="color: #ef4444;">-₹24,817</td>
+                      <td><span class="badge badge-green">Completed</span></td>
+                    </tr>
+                    <tr>
+                      <td>Jun 5, 2026</td>
+                      <td>Payroll - Rahul Mehta</td>
+                      <td>Payroll</td>
+                      <td style="color: #ef4444;">-₹4,15,000</td>
+                      <td><span class="badge badge-green">Completed</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TREASURY TAB ================= -->
+        <section id="tab-treasury" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Treasury</h1>
+              <p class="subtitle">High-yield savings and treasury management.</p>
+            </div>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>High-Yield Savings</h3>
+              <p class="subtitle" style="margin: 0; font-size: 13px;">DICGC-insured up to ₹5 lakh per depositor</p>
+            </div>
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Current Balance</span>
+                  <div style="font-size: 28px; font-weight: 700; margin-top: 8px;">₹12.50 L</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">APY</span>
+                  <div style="font-size: 28px; font-weight: 700; margin-top: 8px; color: var(--emerald);">5.12%</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">YTD Interest</span>
+                  <div style="font-size: 28px; font-weight: 700; margin-top: 8px;">₹35.15 L</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>IntraFi Sweep</h3>
+              <p class="subtitle" style="margin: 0; font-size: 13px;">Extended DICGC coverage through partner banks</p>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Partner Bank</th>
+                    <th>Location</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Bank of the West</td>
+                    <td>San Francisco, CA</td>
+                    <td>₹2.45 L</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>East West Bank</td>
+                    <td>Pasadena, CA</td>
+                    <td>₹2.45 L</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>First Republic</td>
+                    <td>San Francisco, CA</td>
+                    <td>₹2.45 L</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= FINANCING TAB ================= -->
+        <section id="tab-financing" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Financing</h1>
+              <p class="subtitle">Access working capital and business loans.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> Apply for Financing
+            </button>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>Active Loans</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Rate</th>
+                    <th>Term</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Working Capital Line</td>
+                    <td>₹2.50 L</td>
+                    <td>7.5%</td>
+                    <td>18 months</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Term Loan</td>
+                    <td>₹1.50 L</td>
+                    <td>8.2%</td>
+                    <td>36 months</td>
+                    <td><span class="badge badge-yellow">In Review</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>Payment Schedule</h3>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Due Date</th>
+                      <th>Payment Amount</th>
+                      <th>Principal</th>
+                      <th>Interest</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Jun 15, 2026</td>
+                      <td>₹12.04 L</td>
+                      <td>₹9.96 L</td>
+                      <td>₹2.08 L</td>
+                      <td><span class="badge badge-yellow">Pending</span></td>
+                    </tr>
+                    <tr>
+                      <td>Jul 15, 2026</td>
+                      <td>₹12.04 L</td>
+                      <td>₹10.38 L</td>
+                      <td>₹1.66 L</td>
+                      <td><span class="badge badge-blue">Scheduled</span></td>
+                    </tr>
+                    <tr>
+                      <td>Aug 15, 2026</td>
+                      <td>₹12.04 L</td>
+                      <td>₹10.79 L</td>
+                      <td>₹1.25 L</td>
+                      <td><span class="badge badge-blue">Scheduled</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= OPS / PAYROLL TAB ================= -->
+        <section id="tab-ops-payroll" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Ops / Payroll</h1>
+              <p class="subtitle">Manage payroll and employee details.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> Run Payroll
+            </button>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>Upcoming Payroll</h3>
+              <p class="subtitle" style="margin: 0; font-size: 13px;">Next payroll run details</p>
+            </div>
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Pay Period</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px;">Jun 1 - Jun 15</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Total Payroll</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px;">₹1.25 L</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Status</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px; color: var(--yellow);">Pending</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>Employee List</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>Role</th>
+                    <th>Salary</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Rahul Mehta</td>
+                    <td>Software Engineer</td>
+                    <td>₹24,00,000/year</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Priya Nair</td>
+                    <td>Product Manager</td>
+                    <td>₹28,00,000/year</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= CREDIT CARD TAB ================= -->
+        <section id="tab-credit-card" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Credit Card</h1>
+              <p class="subtitle">Manage your company credit cards.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> Issue New Card
+            </button>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>Credit Card Overview</h3>
+            </div>
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Current Balance</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px;">₹4.35 L</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Credit Limit</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px;">₹20.75 L</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Available Credit</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px; color: var(--green);">₹16.40 L</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>Recent Transactions</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Merchant</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Jun 12, 2026</td>
+                    <td>AWS India</td>
+                    <td>₹2.03 L</td>
+                    <td>Software</td>
+                  </tr>
+                  <tr>
+                    <td>Jun 10, 2026</td>
+                    <td>Staples</td>
+                    <td>₹26,560</td>
+                    <td>Office Supplies</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= BILL PAY TAB ================= -->
+<!-- ================= TRANSACTIONS INSIGHTS TAB ================= -->
+        <section id="tab-transactions-insights" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Transactions Insights</h1>
+              <p class="subtitle">Get detailed insights into your spending.</p>
+            </div>
+          </div>
+
+          <div class="grid-card" style="margin-bottom: 32px;">
+            <div class="card-header border-bottom">
+              <h3>Quick Stats</h3>
+            </div>
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Money In</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px; color: var(--green);">+₹3.74 Cr</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Money Out</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px; color: var(--red);">-₹2.32 Cr</div>
+                </div>
+                <div>
+                  <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">Net Cash Flow</span>
+                  <div style="font-size: 24px; font-weight: 700; margin-top: 8px;">+₹1.41 Cr</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-body">
+              <div class="empty-state">
+                <i data-lucide="trending-up"></i>
+                <p>Financial insights will be available here soon!</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= REIMBURSEMENTS TAB ================= -->
+        <section id="tab-reimbursements" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Reimbursements</h1>
+              <p class="subtitle">Manage employee expense reimbursements.</p>
+            </div>
+            <button class="btn btn-primary">
+              <i data-lucide="plus"></i> New Reimbursement
+            </button>
+          </div>
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>Pending Reimbursements</h3>
+            </div>
+            <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>John Doe</td>
+                    <td class="font-medium">₹37,350</td>
+                    <td>Jun 10, 2026</td>
+                    <td><span class="badge badge-yellow">Pending</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= INSIGHTS TAB ================= -->
+<!-- ================= RECEIVE CLIENT TAB ================= -->
+        <section id="tab-receive-client" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Receive from Clients (India)</h1>
+              <p class="subtitle">Payment links, UPI QR, and virtual accounts for domestic clients.</p>
+            </div>
+            <button class="btn btn-primary" id="btn-create-payment-link"><i data-lucide="link"></i> Create Payment Link</button>
+          </div>
+          <div class="payment-options-grid india-pay-grid">
+            <div class="payment-method-card payment-method-featured">
+              <i data-lucide="qr-code" class="method-icon text-blue"></i>
+              <h3>UPI QR &amp; VPA</h3>
+              <p>Share static or dynamic QR. Instant credit to current account.</p>
+            </div>
+            <div class="payment-method-card">
+              <i data-lucide="credit-card" class="method-icon text-purple"></i>
+              <h3>Cards &amp; Netbanking</h3>
+              <p>Via Razorpay / PayU checkout — 80+ banks supported.</p>
+            </div>
+            <div class="payment-method-card">
+              <i data-lucide="building" class="method-icon text-yellow"></i>
+              <h3>Virtual Account (VAN)</h3>
+              <p>Unique account number per client for auto-reconciliation.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= RECEIVE PLATFORMS TAB ================= -->
+        <section id="tab-receive-platforms" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Indian Marketplaces</h1>
+              <p class="subtitle">Connect Flipkart, Meesho, Shopify India, and more.</p>
+            </div>
+          </div>
+          <div class="gateway-dashboard-grid">
+            <div class="grid-card gateway-card"><div class="card-body"><div class="gateway-card-title"><span class="gw-dot paytm"></span><h3>Flipkart Seller</h3></div><p class="text-secondary text-14">Auto-settle marketplace payouts.</p><button class="btn btn-secondary btn-sm">Connect</button></div></div>
+            <div class="grid-card gateway-card"><div class="card-body"><div class="gateway-card-title"><span class="gw-dot razorpay"></span><h3>Shopify India</h3></div><p class="text-secondary text-14">Sync orders &amp; Razorpay settlements.</p><button class="btn btn-secondary btn-sm">Connect</button></div></div>
+            <div class="grid-card gateway-card"><div class="card-body"><div class="gateway-card-title"><span class="gw-dot phonepe"></span><h3>Meesho Supplier</h3></div><p class="text-secondary text-14">Track supplier payments &amp; TDS.</p><button class="btn btn-secondary btn-sm">Connect</button></div></div>
+          </div>
+        </section>
+
+        <!-- ================= RECEIVE AMAZON TAB ================= -->
+        <section id="tab-receive-amazon" class="tab-panel demo-page">
+          <div class="panel-header-row">
+            <div>
+              <h1>Amazon India Seller</h1>
+              <p class="subtitle">Track Amazon.in disbursements and reconcile with GST.</p>
+            </div>
+            <button class="btn btn-primary">Connect Seller Central</button>
+          </div>
+          <div class="grid-card">
+            <div class="card-body">
+              <div class="metric-card" style="box-shadow:none;border:none;padding:0">
+                <div class="metric-header"><span>Last disbursement</span><span class="badge badge-green">Settled</span></div>
+                <div class="metric-value">₹14,82,300</div>
+                <div class="metric-footer"><span>Credited 2 days ago · Ref AMZ-IN-92841</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= CATALOG TAB ================= -->
+<!-- ================= UPI & PAYMENT GATEWAYS TAB ================= -->
+        <section id="tab-payment-gateways" class="tab-panel demo-page">
+          <div class="slash-hero-header india-hero">
+            <div class="slash-badge badge-green-glow">ACCEPT PAYMENTS</div>
+            <h1>UPI, Wallets & Payment Gateways</h1>
+            <p>Collect from customers via UPI QR, payment links, and India&apos;s top gateways — settled to your Stonekrest current account.</p>
+            <div class="capital-perks">
+              <div class="perk"><i data-lucide="check-circle-2"></i><span>0% MDR on UPI</span></div>
+              <div class="perk"><i data-lucide="check-circle-2"></i><span>T+1 settlement</span></div>
+              <div class="perk"><i data-lucide="check-circle-2"></i><span>RBI PA–compliant</span></div>
+            </div>
+          </div>
+
+          <div class="gateway-dashboard-grid">
+            <div class="grid-card gateway-card razorpay-card">
+              <div class="card-header border-bottom">
+                <div class="gateway-card-title"><span class="gw-dot razorpay"></span><h3>Razorpay</h3><span class="badge badge-green">Connected</span></div>
+              </div>
+              <div class="card-body">
+                <div class="gateway-stat-row"><span class="text-secondary">Today&apos;s collections</span><span class="font-bold">₹4,28,150</span></div>
+                <div class="gateway-stat-row"><span class="text-secondary">Success rate</span><span class="text-green font-medium">98.4%</span></div>
+                <button class="btn btn-primary btn-block btn-sm" id="btn-razorpay-dashboard">Open Razorpay Dashboard</button>
+              </div>
+            </div>
+            <div class="grid-card gateway-card paytm-card">
+              <div class="card-header border-bottom">
+                <div class="gateway-card-title"><span class="gw-dot paytm"></span><h3>Paytm for Business</h3><span class="badge badge-green">Connected</span></div>
+              </div>
+              <div class="card-body">
+                <div class="gateway-stat-row"><span class="text-secondary">Wallet settlements</span><span class="font-bold">₹1,92,400</span></div>
+                <div class="gateway-stat-row"><span class="text-secondary">Pending</span><span class="font-medium">₹12,800</span></div>
+                <button class="btn btn-secondary btn-block btn-sm" id="btn-paytm-link">Create Paytm Link</button>
+              </div>
+            </div>
+            <div class="grid-card gateway-card phonepe-card">
+              <div class="card-header border-bottom">
+                <div class="gateway-card-title"><span class="gw-dot phonepe"></span><h3>PhonePe Payment Gateway</h3><span class="badge badge-secondary">Setup</span></div>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary text-14">Accept UPI, cards, and netbanking with PhonePe&apos;s enterprise stack.</p>
+                <button class="btn btn-primary btn-block btn-sm" id="btn-connect-phonepe">Connect PhonePe</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="india-receive-grid">
+            <div class="grid-card">
+              <div class="card-header border-bottom"><h3>Your UPI Collect QR</h3></div>
+              <div class="card-body receive-card-body">
+                <div class="qr-address-box upi-qr-box">
+                  <div class="qr-code-mock upi-qr-mock"><div class="mock-qr-dots"></div></div>
+                  <div class="address-copy-container">
+                    <div class="address-box-heading text-secondary">Stonekrest VPA</div>
+                    <div class="address-string font-mono" id="upi-vpa-string">stonekrest@icici</div>
+                    <button class="btn btn-secondary btn-sm" id="btn-copy-upi"><i data-lucide="copy" class="size-3"></i> Copy UPI ID</button>
+                  </div>
+                </div>
+                <button class="btn btn-primary btn-block" id="btn-sim-upi-collection"><i data-lucide="plus"></i> Simulate UPI Collection (+₹5,000)</button>
+              </div>
+            </div>
+            <div class="grid-card col-span-2">
+              <div class="card-header border-bottom"><h3>Recent Gateway Settlements</h3></div>
+              <div class="table-responsive">
+                <table class="data-table" id="gateway-settlements-table">
+                  <thead><tr><th>Date</th><th>Gateway</th><th>Reference</th><th>Status</th><th class="text-right">Amount</th></tr></thead>
+                  <tbody id="gateway-settlements-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= INTERNATIONAL RECEIVE TAB ================= -->
+        <section id="tab-international-receive" class="tab-panel demo-page">
+          <div class="slash-hero-header emerald-glow india-hero">
+            <div class="slash-badge badge-green-glow">GLOBAL INFLOW</div>
+            <h1>Receive International Payments</h1>
+            <p>SWIFT wire, FIRC-ready inward remittance, and multi-currency accounts — convert to INR at live FX and credit your current account.</p>
+            <div class="capital-perks">
+              <div class="perk"><i data-lucide="check-circle-2"></i><span>SWIFT / IBAN receiving</span></div>
+              <div class="perk"><i data-lucide="check-circle-2"></i><span>FEMA &amp; GST documentation</span></div>
+              <div class="perk"><i data-lucide="check-circle-2"></i><span>USD · EUR · GBP wallets</span></div>
+            </div>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-header"><span>USD Receivable Balance</span></div>
+              <div class="metric-value filter-balance" id="fx-usd-val">₹35.52 L</div>
+              <div class="metric-footer"><span>≈ ₹35,74,560 at live rate</span></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-header"><span>EUR Receivable Balance</span></div>
+              <div class="metric-value filter-balance" id="fx-eur-val">€18,200.00</div>
+              <div class="metric-footer"><span>≈ ₹16,38,000 at live rate</span></div>
+            </div>
+            <div class="metric-card metric-card-gateway">
+              <div class="metric-header"><span>Inward remittance (MTD)</span></div>
+              <div class="metric-value">₹82,40,000</div>
+              <div class="metric-footer text-green"><span>3 SWIFT credits this month</span></div>
+            </div>
+          </div>
+
+          <div class="capital-layout-grid">
+            <div class="grid-card">
+              <div class="card-header border-bottom"><h3>SWIFT / Wire Details (USD)</h3></div>
+              <div class="card-body intl-details-body">
+                <div class="intl-detail-row"><span class="text-secondary">Beneficiary</span><span class="font-medium">Stonekrest India Pvt. Ltd.</span></div>
+                <div class="intl-detail-row"><span class="text-secondary">SWIFT / BIC</span><span class="font-mono">ICICINBBXXX</span><button class="btn-copy-inline" data-copy="ICICINBBXXX"><i data-lucide="copy" class="size-3"></i></button></div>
+                <div class="intl-detail-row"><span class="text-secondary">Account (USD)</span><span class="font-mono">40012345678901</span><button class="btn-copy-inline" data-copy="40012345678901"><i data-lucide="copy" class="size-3"></i></button></div>
+                <div class="intl-detail-row"><span class="text-secondary">Bank</span><span>ICICI Bank Ltd., Mumbai</span></div>
+                <div class="intl-detail-row"><span class="text-secondary">Purpose code</span><span>P0802 — Software exports</span></div>
+                <button class="btn btn-secondary btn-block" id="btn-download-firc-pack"><i data-lucide="download"></i> Download FIRC / e-FIRC Pack</button>
+              </div>
+            </div>
+            <div class="grid-card">
+              <div class="card-header border-bottom"><h3>Convert &amp; Repatriate to INR</h3></div>
+              <div class="card-body">
+                <form id="fx-convert-form" class="payment-form">
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label>From currency</label>
+                      <select id="fx-from-currency"><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option></select>
+                    </div>
+                    <div class="form-group">
+                      <label>Amount</label>
+                      <input type="number" id="fx-amount" placeholder="10000" min="100" step="1" value="10000" />
+                    </div>
+                  </div>
+                  <div class="pricing-summary-box">
+                    <div class="summary-row"><span class="text-secondary">Live FX rate</span><span id="fx-live-rate">1 USD = ₹83.52</span></div>
+                    <div class="summary-row"><span class="text-secondary">Stonekrest FX fee</span><span>0.35%</span></div>
+                    <div class="summary-row total-row"><span>INR credit estimate</span><span class="font-bold" id="fx-inr-estimate">₹8,32,488</span></div>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block"><i data-lucide="repeat"></i> Convert to INR Current Account</button>
+                </form>
+                <button class="btn btn-secondary btn-block" id="btn-sim-swift-inward" style="margin-top:12px"><i data-lucide="globe"></i> Simulate SWIFT Inward (+$5,000)</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SETTINGS TAB ================= -->
+        <section id="tab-settings" class="tab-panel demo-page">
+          <div class="welcome-row">
+            <h1>Account Settings</h1>
+            <p class="subtitle">Manage company preferences, routing configurations, and security.</p>
+          </div>
+
+          <div class="grid-card">
+            <div class="card-header border-bottom">
+              <h3>Company Information</h3>
+            </div>
+            <div class="card-body settings-form-body">
+              <div class="form-group">
+                <label>Company Legal Name</label>
+                <input type="text" value="Stonekrest India Private Limited" readonly />
+              </div>
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label>GSTIN</label>
+                  <input type="text" value="27AABCS1429B1ZV" readonly />
+                </div>
+                <div class="form-group">
+                  <label>CIN</label>
+                  <input type="text" value="U72900MH2019PTC328491" readonly />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Registered Address</label>
+                <input type="text" value="WeWork, BKC, Bandra Kurla Complex, Mumbai 400051" readonly />
+              </div>
+              
+              <div class="setting-toggle-row">
+                <div>
+                  <span class="font-medium text-white block">UPI &amp; gateway settlement alerts</span>
+                  <span class="text-secondary text-14">SMS and email when Razorpay / Paytm settlements hit your account.</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    </div><!-- /.app-body -->
+
+    <!-- Global Drawers and Overlays -->
+    <div class="drawer-overlay" id="money-drawer-overlay">
+      <div class="drawer" id="money-drawer">
+        <!-- Main options screen -->
+        <div class="drawer-screen active" id="drawer-screen-main">
+          <div class="drawer-header border-bottom">
+            <h2>Move Money</h2>
+            <button class="close-drawer-btn" id="btn-close-drawer">&times;</button>
+          </div>
+          <div class="drawer-body">
+            <div class="drawer-option-list">
+              <div class="drawer-option" data-screen="drawer-screen-send">
+                <i data-lucide="send" class="text-blue"></i>
+                <div>
+                  <span class="option-title">Send</span>
+                </div>
+              </div>
+              <div class="drawer-option" data-screen="drawer-screen-transfer">
+                <i data-lucide="arrow-right-left" class="text-blue"></i>
+                <div>
+                  <span class="option-title">Transfer</span>
+                </div>
+              </div>
+              <div class="drawer-option" data-screen="drawer-screen-deposit">
+                <i data-lucide="plus" class="text-blue"></i>
+                <div>
+                  <span class="option-title">Deposit</span>
+                </div>
+              </div>
+              <div class="drawer-option" data-screen="drawer-screen-request">
+                <i data-lucide="arrow-left" class="text-blue"></i>
+                <div>
+                  <span class="option-title">Request</span>
+                </div>
+              </div>
+              <hr class="drawer-divider">
+              <div class="drawer-option" data-screen="drawer-screen-upload-bill">
+                <i data-lucide="upload" class="text-blue"></i>
+                <div>
+                  <span class="option-title">Upload bill</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload bill screen -->
+        <div class="drawer-screen" id="drawer-screen-upload-bill">
+          <div class="drawer-header border-bottom">
+            <button class="drawer-back-btn" data-screen="drawer-screen-main">
+              <i data-lucide="arrow-left"></i>
+            </button>
+            <h2></h2>
+            <button class="close-drawer-btn" id="btn-close-drawer-2">&times;</button>
+          </div>
+          <div class="drawer-body move-money-body">
+            <h1 class="move-money-title">How would you like to start?</h1>
+            
+            <div class="move-money-section">
+              <h3 class="move-money-section-title">Upload a bill</h3>
+              <p class="move-money-section-desc">Use this to automatically pre-fill your recipient's payment details.</p>
+              <div class="upload-area">
+                <i data-lucide="file-up"></i>
+                <div>
+                  <div class="upload-title">Drag and drop here or click to upload</div>
+                  <div class="upload-subtitle">Upload images, PDFs, or spreadsheets</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider-or">
+              <hr>
+              <span>OR</span>
+              <hr>
+            </div>
+
+            <div class="move-money-section">
+              <h3 class="move-money-section-title">Select a recipient</h3>
+              <a href="#" class="move-money-link">Search</a>
+              <div class="move-money-search">
+                <input type="text" placeholder="">
+              </div>
+              
+              <div class="move-money-buttons">
+                <button class="move-money-btn-secondary">
+                  <i data-lucide="plus"></i>
+                  Create recipient
+                </button>
+                <button class="move-money-btn-secondary">
+                  <i data-lucide="mail"></i>
+                  Invite recipient
+                </button>
+              </div>
+
+              <div class="move-money-recents-title">Recently paid</div>
+              <hr class="move-money-divider">
+              <div class="move-money-recipient-item">
+                <div class="move-money-recipient-avatar">RG</div>
+                <div class="move-money-recipient-info">
+                  <div class="move-money-recipient-name">Rohan Gupta</div>
+                  <div class="move-money-recipient-details">
+                    <span>Contractor</span>
+                    <span>rohan@designstudio.in</span>
+                  </div>
+                </div>
+                <i data-lucide="chevron-right"></i>
+              </div>
+              <hr class="move-money-divider">
+              <div class="move-money-recipient-item">
+                <div class="move-money-recipient-avatar">L</div>
+                <div class="move-money-recipient-info">
+                  <div class="move-money-recipient-name">WeWork BKC #3431</div>
+                </div>
+                <i data-lucide="chevron-right"></i>
+              </div>
+              <hr class="move-money-divider">
+              <div class="move-money-recipient-item">
+                <div class="move-money-recipient-avatar" style="background: linear-gradient(135deg, #4a776a, #345a50)">AM</div>
+                <div class="move-money-recipient-info">
+                  <div class="move-money-recipient-name">Priya Sharma</div>
+                  <div class="move-money-recipient-details">
+                    <span>Consultant</span>
+                    <span>priya@stonekrest.in</span>
+                  </div>
+                </div>
+                <i data-lucide="chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transfer screen -->
+        <div class="drawer-screen" id="drawer-screen-transfer">
+          <div class="drawer-header border-bottom">
+            <button class="drawer-back-btn" data-screen="drawer-screen-main">
+              <i data-lucide="arrow-left"></i>
+            </button>
+            <h2></h2>
+            <button class="close-drawer-btn" id="btn-close-drawer-3">&times;</button>
+          </div>
+          <div class="drawer-body move-money-body">
+            <h1 class="move-money-title">Transfer funds</h1>
+            <div class="move-money-card">
+              <h3 class="move-money-card-title">One-time transfer</h3>
+              
+              <div class="move-money-form-group">
+                <label class="move-money-label">Amount</label>
+                <div class="move-money-input-with-prefix">
+                  <span class="move-money-prefix">₹</span>
+                  <input type="text" class="move-money-input" value="0.00">
+                </div>
+              </div>
+
+              <div class="move-money-form-group">
+                <label class="move-money-label">Transfer from</label>
+                <div class="move-money-select">
+                  <span>Select an account</span>
+                  <i data-lucide="chevron-down"></i>
+                </div>
+              </div>
+
+              <div class="move-money-form-group">
+                <label class="move-money-label">Transfer to</label>
+                <div class="move-money-select">
+                  <span>Select an account</span>
+                  <i data-lucide="chevron-down"></i>
+                </div>
+              </div>
+
+              <div class="move-money-toggle-row">
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+                <span class="move-money-toggle-label">Add more details</span>
+              </div>
+
+              <div class="move-money-buttons-row">
+                <button class="move-money-btn-back">Back</button>
+                <button class="move-money-btn-next">Next <i data-lucide="chevron-right"></i></button>
+              </div>
+            </div>
+            <div class="move-money-option-card">
+              <i data-lucide="refresh-ccw" class="move-money-option-icon"></i>
+              <span class="move-money-option-title">Auto transfer rule</span>
+              <i data-lucide="chevron-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deposit screen -->
+        <div class="drawer-screen" id="drawer-screen-deposit">
+          <div class="drawer-header border-bottom">
+            <button class="drawer-back-btn" data-screen="drawer-screen-main">
+              <i data-lucide="arrow-left"></i>
+            </button>
+            <h2></h2>
+            <button class="close-drawer-btn" id="btn-close-drawer-4">&times;</button>
+          </div>
+          <div class="drawer-body move-money-body">
+            <h1 class="move-money-title">Add funds to your accounts</h1>
+            
+            <div class="move-money-card">
+              <div class="move-money-deposit-header">
+                <div>
+                  <h3 class="move-money-deposit-title">NEFT / RTGS</h3>
+                  <span class="move-money-deposit-badge">Same day</span>
+                </div>
+                <p class="move-money-deposit-desc">Arrives within 30 minutes (RTGS) or same business day (NEFT).</p>
+              </div>
+              <div class="move-money-form-group">
+                <label class="move-money-label">Receiving account</label>
+                <div class="move-money-account-select">
+                  <div class="move-money-account-icon">
+                    <i data-lucide="circle-dollar-sign"></i>
+                  </div>
+                  <div class="move-money-account-info">
+                    <div class="move-money-account-name">Ops / Payroll</div>
+                    <div class="move-money-account-details">₹2,02,32,671 / Current A/c ••1038</div>
+                  </div>
+                  <i data-lucide="chevron-down"></i>
+                </div>
+              </div>
+              <div class="move-money-bank-details-row">
+                <div class="move-money-bank-details-group">
+                  <label class="move-money-label">IFSC code</label>
+                  <div class="move-money-bank-details-box">
+                    <span>HDFC0001234</span>
+                    <button class="move-money-copy-btn">
+                      <i data-lucide="copy"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="move-money-bank-details-group">
+                  <label class="move-money-label">Account number</label>
+                  <div class="move-money-bank-details-box">
+                    <span>••••••1038</span>
+                    <button class="move-money-copy-btn">
+                      <i data-lucide="copy"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="move-money-deposit-buttons">
+                <button class="move-money-btn-primary">
+                  <i data-lucide="download"></i>
+                  Wire Instructions
+                </button>
+                <a href="#" class="move-money-link-btn">View More Details</a>
+              </div>
+            </div>
+
+            <div class="move-money-option-card">
+              <i data-lucide="arrow-right-left" class="move-money-option-icon"></i>
+              <div>
+                <div class="move-money-option-title-row">
+                  <span class="move-money-option-title">Bank Transfer</span>
+                  <span class="move-money-deposit-badge">Most common</span>
+                </div>
+                <p class="move-money-deposit-desc">Arrives in 2–4 business days.</p>
+              </div>
+              <i data-lucide="chevron-right"></i>
+            </div>
+
+            <div class="move-money-option-card">
+              <i data-lucide="credit-card" class="move-money-option-icon"></i>
+              <div>
+                <span class="move-money-option-title">Check Deposit</span>
+                <p class="move-money-deposit-desc">Appears in 1 to 5 business days.</p>
+              </div>
+              <i data-lucide="chevron-right"></i>
+            </div>
+
+            <div class="move-money-option-card">
+              <i data-lucide="arrow-right" class="move-money-option-icon"></i>
+              <div>
+                <span class="move-money-option-title">Invoice</span>
+              </div>
+              <i data-lucide="chevron-right"></i>
+            </div>
+
+            <div class="move-money-option-card">
+              <i data-lucide="users-2" class="move-money-option-icon"></i>
+              <div>
+                <span class="move-money-option-title">SAFE Investment</span>
+              </div>
+              <i data-lucide="chevron-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Request screen -->
+        <div class="drawer-screen" id="drawer-screen-request">
+          <div class="drawer-header border-bottom">
+            <button class="drawer-back-btn" data-screen="drawer-screen-main">
+              <i data-lucide="arrow-left"></i>
+            </button>
+            <h2></h2>
+            <button class="close-drawer-btn" id="btn-close-drawer-5">&times;</button>
+          </div>
+          <div class="drawer-body move-money-body move-money-request-body">
+            <div class="move-money-request-left">
+              <h1 class="move-money-title">How would you like to request money?</h1>
+              <div class="move-money-form-group">
+                <label class="move-money-label">Name</label>
+                <div class="move-money-select">
+                  <span>Select a customer</span>
+                  <i data-lucide="chevron-down"></i>
+                </div>
+              </div>
+              <h3 class="move-money-section-title">Compare options</h3>
+              <div class="move-money-radio-option active">
+                <input type="radio" name="request-type" id="radio-one-time" checked>
+                <label for="radio-one-time">
+                  <div>Create a one-time invoice</div>
+                  <div class="move-money-radio-desc">Send a one-time invoice with a built-in payment link.</div>
+                </label>
+              </div>
+              <div class="move-money-radio-option">
+                <input type="radio" name="request-type" id="radio-recurring">
+                <label for="radio-recurring">
+                  <div>Create a recurring series</div>
+                  <div class="move-money-radio-desc">Automatically generate recurring invoices on a set schedule.</div>
+                </label>
+              </div>
+              <div class="move-money-radio-option">
+                <input type="radio" name="request-type" id="radio-no-invoice">
+                <label for="radio-no-invoice">
+                  <div>Request money without an invoice</div>
+                  <div class="move-money-radio-desc">Send only a payment link with a single amount.</div>
+                </label>
+              </div>
+              <div class="move-money-buttons-row" style="justify-content: flex-start;">
+                <button class="move-money-btn-back">
+                  <i data-lucide="chevron-left"></i>
+                  Back
+                </button>
+                <button class="move-money-btn-next" style="opacity: 0.5;">
+                  Next
+                  <i data-lucide="chevron-right"></i>
+                </button>
+              </div>
+            </div>
+            <div class="move-money-request-right">
+              <div class="move-money-invoice-preview">
+                <div class="move-money-invoice-header">
+                  <div class="move-money-invoice-title">Invoice</div>
+                  <i data-lucide="palmtree"></i>
+                </div>
+                <div class="move-money-invoice-preview-row">
+                  <span>From</span>
+                  <span></span>
+                </div>
+                <div class="move-money-invoice-preview-row">
+                  <span></span>
+                  <span>Invoice #</span>
+                </div>
+                <div class="move-money-invoice-preview-row">
+                  <span></span>
+                  <span>Issue date</span>
+                </div>
+                <div class="move-money-invoice-preview-row">
+                  <span>To</span>
+                  <span>Due date</span>
+                </div>
+                <div class="move-money-invoice-preview-row">
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="move-money-invoice-divider"></div>
+                <div class="move-money-invoice-table-header">
+                  <span>Item</span>
+                  <span>Quantity</span>
+                  <span>Unit price</span>
+                  <span>Total</span>
+                </div>
+                <div class="move-money-invoice-preview-row">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="move-money-invoice-divider"></div>
+                <div class="move-money-invoice-preview-row">
+                  <span>Total</span>
+                  <span></span>
+                </div>
+                <div class="move-money-invoice-divider"></div>
+                <div class="move-money-invoice-footer">
+                  <div class="move-money-invoice-preview-row">
+                    <span>Terms</span>
+                    <span>Memo</span>
+                  </div>
+                  <div class="move-money-invoice-preview-row">
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="move-money-invoice-preview-row" style="justify-content: flex-start;">
+                    <span>Pay via</span>
+                    <div class="move-money-pay-badges">
+                      <span class="move-money-pay-badge">Stonekrest Transfer</span>
+                      <span class="move-money-pay-badge">UPI</span>
+                      <span class="move-money-pay-badge">Card</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Send screen -->
+        <div class="drawer-screen" id="drawer-screen-send">
+          <div class="drawer-header border-bottom">
+            <button class="drawer-back-btn" data-screen="drawer-screen-main">
+              <i data-lucide="arrow-left"></i>
+            </button>
+            <h2></h2>
+            <button class="close-drawer-btn" id="btn-close-drawer-6">&times;</button>
+          </div>
+          <div class="drawer-body move-money-body">
+            <h1 class="move-money-title">How would you like to start?</h1>
+            
+            <div class="move-money-section">
+              <h3 class="move-money-section-title">Upload a bill</h3>
+              <p class="move-money-section-desc">Use this to automatically pre-fill your recipient's payment details.</p>
+              <div class="upload-area">
+                <i data-lucide="file-up"></i>
+                <div>
+                  <div class="upload-title">Drag and drop here or click to upload</div>
+                  <div class="upload-subtitle">Upload images, PDFs, or spreadsheets</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider-or">
+              <hr>
+              <span>OR</span>
+              <hr>
+            </div>
+
+            <div class="move-money-section">
+              <h3 class="move-money-section-title">Select a recipient</h3>
+              <a href="#" class="move-money-link">Search</a>
+              <div class="move-money-search">
+                <input type="text" placeholder="">
+              </div>
+              
+              <div class="move-money-buttons">
+                <button class="move-money-btn-secondary">
+                  <i data-lucide="plus"></i>
+                  Create recipient
+                </button>
+                <button class="move-money-btn-secondary">
+                  <i data-lucide="mail"></i>
+                  Invite recipient
+                </button>
+              </div>
+
+              <div class="move-money-recents-title">Recently paid</div>
+              <hr class="move-money-divider">
+              <div class="move-money-recipient-item">
+                <div class="move-money-recipient-avatar">RG</div>
+                <div class="move-money-recipient-info">
+                  <div class="move-money-recipient-name">Rohan Gupta</div>
+                  <div class="move-money-recipient-details">
+                    <span>Contractor</span>
+                    <span>rohan@designstudio.in</span>
+                  </div>
+                </div>
+                <i data-lucide="chevron-right"></i>
+              </div>
+              <hr class="move-money-divider">
+              <div class="move-money-recipient-item">
+                <div class="move-money-recipient-avatar">L</div>
+                <div class="move-money-recipient-info">
+                  <div class="move-money-recipient-name">WeWork BKC #3431</div>
+                </div>
+                <i data-lucide="chevron-right"></i>
+              </div>
+              <hr class="move-money-divider">
+              <div class="move-money-recipient-item">
+                <div class="move-money-recipient-avatar" style="background: linear-gradient(135deg, #4a776a, #345a50)">AM</div>
+                <div class="move-money-recipient-info">
+                  <div class="move-money-recipient-name">Priya Sharma</div>
+                  <div class="move-money-recipient-details">
+                    <span>Consultant</span>
+                    <span>priya@stonekrest.in</span>
+                  </div>
+                </div>
+                <i data-lucide="chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Onboarding Modal -->
+    <div id="onboarding-modal" class="onboarding-modal hidden">
+      <div class="onboarding-container">
+        <!-- Logo -->
+        <div class="onboarding-logo">
+          <svg class="stonekrest-logo mercury-logo" viewBox="0 0 150 28" aria-label="Stonekrest" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2L4 14h7v12h6V14h7L14 2z" fill="#2D6A4F"/>
+            <text x="36" y="20" fill="#1C1917" font-family="'Outfit', sans-serif" font-weight="700" font-size="13px" letter-spacing="0.8px">STONEKREST</text>
+          </svg>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="onboarding-progress-container">
+          <div class="onboarding-progress-bar" id="mercury-progress-fill" style="width: 0%"></div>
+        </div>
+
+        <!-- Steps Container -->
+        <div class="onboarding-steps">
+          <!-- Step 1: Email -->
+          <div class="onboarding-step active" data-step="1">
+            <p class="onboarding-subtitle">Welcome to Stonekrest India</p>
+            <h1 class="onboarding-question">What's your email?</h1>
+            <div class="onboarding-input-group">
+              <input type="email" class="onboarding-input" placeholder="you@company.com" id="onboarding-email" value="nandatarun240206@gmail.com">
+            </div>
+            <button class="onboarding-btn onboarding-btn-primary" id="mercury-step1-next">Next</button>
+          </div>
+
+          <!-- Step 2: Funding -->
+          <div class="onboarding-step" data-step="2">
+            <p class="onboarding-subtitle">Welcome to Stonekrest India</p>
+            <h1 class="onboarding-question">Is your company GST-registered and operating in India?</h1>
+            <div class="onboarding-options">
+              <button class="onboarding-option" data-option="yes">Yes, GST registered with active operations</button>
+              <button class="onboarding-option" data-option="no">Not yet — we are setting up</button>
+            </div>
+            <button class="onboarding-btn onboarding-btn-secondary" id="mercury-step2-back">Back</button>
+          </div>
+
+          <!-- Step 3: Employee Count -->
+          <div class="onboarding-step" data-step="3">
+            <p class="onboarding-subtitle">Welcome to Stonekrest India</p>
+            <h1 class="onboarding-question">How many employees does your company have?</h1>
+            <div class="onboarding-options">
+              <button class="onboarding-option" data-option="1-10">1-10 Employees</button>
+              <button class="onboarding-option" data-option="11-50">11-50 Employees</button>
+              <button class="onboarding-option" data-option="51-100">51-100 Employees</button>
+              <button class="onboarding-option" data-option="101-250">101-250 Employees</button>
+              <button class="onboarding-option" data-option="251+">251+ Employees</button>
+            </div>
+            <button class="onboarding-btn onboarding-btn-secondary" id="mercury-step3-back">Back</button>
+          </div>
+
+          <!-- Step 4: Card Spend -->
+          <div class="onboarding-step" data-step="4">
+            <p class="onboarding-subtitle">Welcome to Stonekrest India</p>
+            <h1 class="onboarding-question">How much does your business spend on corporate cards per month? (INR)</h1>
+            <div class="onboarding-options">
+              <button class="onboarding-option" data-option="less-10l">Under ₹10 lakh</button>
+              <button class="onboarding-option" data-option="10l-25l">₹10–25 lakh</button>
+              <button class="onboarding-option" data-option="25l-50l">₹25–50 lakh</button>
+              <button class="onboarding-option" data-option="50l-1cr">₹50 lakh–1 Cr</button>
+              <button class="onboarding-option" data-option="1cr-plus">₹1 Cr+</button>
+            </div>
+            <button class="onboarding-btn onboarding-btn-secondary" id="mercury-step4-back">Back</button>
+          </div>
+
+          <!-- Step 5: Digital payments volume -->
+          <div class="onboarding-step" data-step="5">
+            <p class="onboarding-subtitle">Welcome to Stonekrest India</p>
+            <h1 class="onboarding-question">How much UPI &amp; payment gateway volume does your business process per month?</h1>
+            <div class="onboarding-options">
+              <button class="onboarding-option" data-option="0">₹0</button>
+              <button class="onboarding-option" data-option="1-5l">₹1–5 lakh</button>
+              <button class="onboarding-option" data-option="5l-25l">₹5–25 lakh</button>
+              <button class="onboarding-option" data-option="25l-1cr">₹25 lakh–1 Cr</button>
+              <button class="onboarding-option" data-option="1cr-plus">₹1 Cr+</button>
+            </div>
+            <button class="onboarding-btn onboarding-btn-secondary" id="mercury-step5-back">Back</button>
+          </div>
+
+          <!-- Step 6: Create Account -->
+          <div class="onboarding-step" data-step="6">
+            <button class="onboarding-btn onboarding-btn-secondary" id="mercury-step6-back" style="margin-bottom: 16px;">Back</button>
+            <p class="onboarding-subtitle">Create your account</p>
+            <h1 class="onboarding-question" style="font-size: 32px; text-align: left; width: 100%; max-width: 580px;">Create your account</h1>
+            <p style="color: #a9aab8; font-size: 18px; text-align: left; width: 100%; max-width: 580px; margin: 0 0 32px 0;">Choose a secure password that you don't use anywhere else.</p>
+            
+            <div class="onboarding-input-group" style="margin-bottom: 20px;">
+              <label class="onboarding-input-label">Email *</label>
+              <input type="email" class="onboarding-input" placeholder="you@company.com" id="onboarding-account-email" value="nandatarun240206@gmail.com" readonly style="background-color: #1a1a24; color: #7a7a8a;">
+            </div>
+            
+            <div class="onboarding-input-group" style="margin-bottom: 20px;">
+              <label class="onboarding-input-label">Password *</label>
+              <div class="onboarding-input-wrapper" style="position: relative;">
+                <input type="password" class="onboarding-input" placeholder="Enter your password" id="onboarding-account-password">
+                <button type="button" class="onboarding-input-toggle" id="toggle-password">
+                  <i data-lucide="eye" style="width: 20px; height: 20px;"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="onboarding-input-group" style="margin-bottom: 12px;">
+              <label class="onboarding-input-label">Phone number (optional)</label>
+              <div class="onboarding-phone-input">
+                <div class="onboarding-phone-country">
+                  <span class="flag">🇺🇸</span>
+                  <i data-lucide="chevron-down" style="width: 16px; height: 16px; color: #7a7a8a;"></i>
+                </div>
+                <input type="tel" class="onboarding-input onboarding-input-phone" placeholder="+1">
+              </div>
+            </div>
+            
+            <p style="color: #7a7a8a; font-size: 16px; text-align: left; width: 100%; max-width: 580px; margin: 0 0 28px 0;">This allows us to send you real-time updates on your application status.</p>
+            
+            <div class="onboarding-input-group" style="margin-bottom: 32px;">
+              <label class="onboarding-input-label">Invite code (optional)</label>
+              <input type="text" class="onboarding-input" placeholder="Enter invite code if you have one">
+            </div>
+            
+            <div class="onboarding-checkbox" style="margin-bottom: 36px; width: 100%; max-width: 580px;">
+              <input type="checkbox" id="terms-checkbox" class="onboarding-checkbox-input">
+              <label for="terms-checkbox" class="onboarding-checkbox-label">
+                I agree to the <span class="onboarding-link">Stonekrest User Agreement</span>, <span class="onboarding-link">Privacy Policy</span>, and <span class="onboarding-link">Agreement to Receive Electronic Disclosures</span>.
+              </label>
+            </div>
+            
+            <button class="onboarding-btn onboarding-btn-primary-yellow" id="mercury-claim-account">Claim your account</button>
+            
+            <p style="color: #a9aab8; font-size: 18px; margin-top: 24px;">Already have an account? <span class="onboarding-link" style="color: #ffffff;">Sign in</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Razorpay Checkout Modal -->
+    <div id="razorpay-checkout-modal" class="razorpay-checkout-modal hidden" style="position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(4px);">
+      <div class="razorpay-checkout-container" style="width: 100%; max-width: 480px; background: #f4f4f5; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+        <!-- Razorpay Header -->
+        <div class="razorpay-checkout-header" style="background: linear-gradient(135deg, #0f9d58, #52c41a); padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://razorpay.com/favicon.ico" style="width: 24px; height: 24px; border-radius: 4px;">
+            <span style="color: white; font-weight: 700; font-size: 18px; font-family: 'Inter', sans-serif;">Razorpay</span>
+          </div>
+          <button id="close-razorpay-modal" style="background: none; border: none; color: white; cursor: pointer; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">
+            <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+          </button>
+        </div>
+        
+        <!-- Razorpay Content -->
+        <div class="razorpay-checkout-content" style="background: white; padding: 0;">
+          <!-- Amount Display -->
+          <div class="razorpay-amount-row" style="padding: 20px 24px; background: #fff; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: #52525b; font-size: 14px;">Order Amount</span>
+            <span style="color: #18181b; font-weight: 700; font-size: 18px; font-family: 'Roboto Mono', monospace;">₹118.00</span>
+          </div>
+          
+          <!-- Payment Methods Nav -->
+          <div class="razorpay-method-nav" style="display: flex; background: #fafafa; border-bottom: 1px solid #eee;">
+            <button class="razorpay-method-tab active" data-method="upi" style="flex: 1; padding: 14px; background: transparent; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: #71717a; border-bottom: 2px solid transparent; transition: all 0.2s;">UPI</button>
+            <button class="razorpay-method-tab" data-method="card" style="flex: 1; padding: 14px; background: transparent; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: #71717a; border-bottom: 2px solid transparent; transition: all 0.2s;">Card</button>
+            <button class="razorpay-method-tab" data-method="netbanking" style="flex: 1; padding: 14px; background: transparent; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: #71717a; border-bottom: 2px solid transparent; transition: all 0.2s;">Netbanking</button>
+          </div>
+          
+          <!-- Method: UPI -->
+          <div class="razorpay-method-content active" id="method-upi" style="padding: 24px;">
+            <div style="margin-bottom: 16px;">
+              <label style="font-size: 12px; color: #71717a; display: block; margin-bottom: 8px; font-weight: 600;">UPI ID</label>
+              <input type="text" placeholder="username@upi" value="test@razorpay" style="width: 100%; padding: 12px; border: 1px solid #d4d4d8; border-radius: 8px; font-size: 15px; outline: none; transition: border 0.2s; font-family: 'Inter', sans-serif;">
+            </div>
+            <button class="razorpay-pay-btn" id="pay-upi" style="width: 100%; background: #0f9d58; color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; transition: transform 0.1s, background 0.2s; font-family: 'Inter', sans-serif;">
+              Pay ₹118.00
+            </button>
+          </div>
+          
+          <!-- Method: Card -->
+          <div class="razorpay-method-content hidden" id="method-card" style="padding: 24px;">
+            <div style="margin-bottom: 16px;">
+              <label style="font-size: 12px; color: #71717a; display: block; margin-bottom: 8px; font-weight: 600;">Card Number</label>
+              <input type="text" placeholder="4242 4242 4242 4242" maxlength="19" value="4111 1111 1111 1111" style="width: 100%; padding: 12px; border: 1px solid #d4d4d8; border-radius: 8px; font-size: 15px; outline: none; font-family: 'Roboto Mono', monospace; letter-spacing: 1px;">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+              <div>
+                <label style="font-size: 12px; color: #71717a; display: block; margin-bottom: 8px; font-weight: 600;">Expiry</label>
+                <input type="text" placeholder="MM/YY" value="12/34" style="width: 100%; padding: 12px; border: 1px solid #d4d4d8; border-radius: 8px; font-size: 15px; outline: none; font-family: 'Roboto Mono', monospace;">
+              </div>
+              <div>
+                <label style="font-size: 12px; color: #71717a; display: block; margin-bottom: 8px; font-weight: 600;">CVV</label>
+                <input type="password" placeholder="123" value="123" style="width: 100%; padding: 12px; border: 1px solid #d4d4d8; border-radius: 8px; font-size: 15px; outline: none; font-family: 'Roboto Mono', monospace;">
+              </div>
+            </div>
+            <button class="razorpay-pay-btn" id="pay-card" style="width: 100%; background: #0f9d58; color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; transition: transform 0.1s, background 0.2s; font-family: 'Inter', sans-serif;">
+              Pay ₹118.00
+            </button>
+          </div>
+          
+          <!-- Method: Netbanking -->
+          <div class="razorpay-method-content hidden" id="method-netbanking" style="padding: 24px;">
+             <div style="margin-bottom: 16px;">
+                <label style="font-size: 12px; color: #71717a; display: block; margin-bottom: 8px; font-weight: 600;">Select Bank</label>
+                <select style="width: 100%; padding: 12px; border: 1px solid #d4d4d8; border-radius: 8px; font-size: 15px; outline: none; background: white; font-family: 'Inter', sans-serif;">
+                  <option>HDFC Bank</option>
+                  <option>ICICI Bank</option>
+                  <option>State Bank of India</option>
+                </select>
+             </div>
+             <button class="razorpay-pay-btn" id="pay-netbanking" style="width: 100%; background: #0f9d58; color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; transition: transform 0.1s, background 0.2s; font-family: 'Inter', sans-serif;">
+               Pay ₹118.00
+             </button>
+          </div>
+          
+          <!-- Footer / Trust Badge -->
+          <div class="razorpay-footer" style="padding: 20px; background: #f4f4f5; text-align: center;">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 6px; color: #a1a1aa; font-size: 12px;">
+              <i data-lucide="shield-check" style="width: 14px; height: 14px; color: #0f9d58;"></i>
+              Secured by Razorpay
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Get Test Keys Modal -->
+    <div id="test-keys-modal" class="razorpay-checkout-modal hidden" style="position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 1001; backdrop-filter: blur(4px);">
+      <div style="width: 100%; max-width: 700px; background: white; border-radius: 16px; overflow: hidden;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 24px 32px; border-bottom: 1px solid #e5e7eb;">
+          <h2 style="font-size: 28px; font-weight: 700; color: #111827; margin: 0;">Test integrations now</h2>
+          <button id="close-test-keys-modal" style="background: none; border: none; color: #6b7280; cursor: pointer; padding: 8px; font-size: 24px;">✕</button>
+        </div>
+
+        <!-- Content -->
+        <div style="padding: 32px;">
+          <p style="color: #6b7280; font-size: 18px; line-height: 1.6; margin-bottom: 32px;">
+            Your API key allows your website to securely accept payments via Razorpay. Follow the <span style="color: #2563eb; cursor: pointer;">integration guide</span> to set up payments.
+          </p>
+
+          <!-- API Key -->
+          <div style="margin-bottom: 16px;">
+            <div id="test-key-id" style="color: #111827; font-size: 28px; font-weight: 700; font-family: 'Roboto Mono', monospace;">rzp_test_TONRgn4Z0umhmM</div>
+          </div>
+
+          <!-- API Secret (Masked) -->
+          <div style="margin-bottom: 24px;">
+            <div id="test-key-secret" style="color: #111827; font-size: 28px; font-weight: 700; font-family: 'Roboto Mono', monospace;">••••••••••••••••</div>
+          </div>
+
+          <!-- Generated Date -->
+          <div style="color: #6b7280; font-size: 16px; margin-bottom: 24px;">
+            Generated on 11th Jun 2026 at 09:11 pm
+          </div>
+
+          <!-- Warning Box -->
+          <div style="background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
+            <div style="display: flex; align-items: flex-start; gap: 12px;">
+              <span style="color: #d97706; font-size: 24px;">⚠️</span>
+              <p style="color: #92400e; font-size: 18px; line-height: 1.5; margin: 0;">
+                For security reasons, this key can only be downloaded once. If you have lost it you will have to regenerate a new one and update it everywhere.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="border-top: 1px solid #e5e7eb; padding: 24px 32px;">
+          <button id="btn-regenerate-key" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; border-radius: 16px; font-size: 22px; font-weight: 500; cursor: pointer;">
+            Regenerate
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
