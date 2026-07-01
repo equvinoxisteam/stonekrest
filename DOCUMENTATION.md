@@ -53,6 +53,6 @@ Health check: `GET /health`
 
 ## Branding notes
 
-- Header shows **Stonekrest** (left) and **Stonekrest · Demo** badge (right)
+- Header shows **Stonekrest** (left) with client tagline **for Equvinoxis · India**
 - Org selector shows **Equvinoxis India Pvt. Ltd.**
 - UPI VPA demo: `equvinoxis@icici`
