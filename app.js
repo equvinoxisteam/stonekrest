@@ -463,7 +463,7 @@ const initApp = () => {
     const closeMobileSidebar = () => {
       document.querySelector('.sidebar')?.classList.remove('open');
       document.getElementById('sidebar-backdrop')?.classList.remove('active');
-      document.documentElement.classList.remove('nav-locked');
+      document.documentElement.classList.remove('nav-open');
       const menuBtn = document.getElementById('btn-mobile-menu');
       if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
     };
@@ -471,7 +471,7 @@ const initApp = () => {
     const openMobileSidebar = () => {
       document.querySelector('.sidebar')?.classList.add('open');
       document.getElementById('sidebar-backdrop')?.classList.add('active');
-      document.documentElement.classList.add('nav-locked');
+      document.documentElement.classList.add('nav-open');
       const menuBtn = document.getElementById('btn-mobile-menu');
       if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
     };
@@ -494,8 +494,10 @@ const initApp = () => {
     });
 
     const handleMenuNavigate = (menuItem, e) => {
-      e.preventDefault();
-      e.stopPropagation();
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       const tabName = (menuItem.getAttribute("href") || "").replace(/^#/, "") || menuItem.getAttribute("data-tab");
       if (tabName) {
         window.location.hash = tabName;
@@ -504,31 +506,39 @@ const initApp = () => {
       }
     };
 
-    document.querySelectorAll(".menu-item:not(.menu-item-parent)").forEach(menuItem => {
-      menuItem.addEventListener("click", (e) => handleMenuNavigate(menuItem, e));
-    });
+    const handleSidebarInteraction = (e) => {
+      const sidebarEl = document.getElementById('main-sidebar');
+      if (!sidebarEl) return;
 
-    document.querySelectorAll('.menu-item-parent').forEach(menu => {
-      const toggleParent = (e) => {
+      const parent = e.target.closest('.menu-item-parent');
+      if (parent && sidebarEl.contains(parent)) {
         e.preventDefault();
         e.stopPropagation();
-        const submenuId = menu.getAttribute('data-toggle');
+        const submenuId = parent.getAttribute('data-toggle');
         const submenu = document.getElementById(submenuId);
         const isOpen = submenu?.classList.contains('open');
         if (submenu) {
           if (isOpen) {
             submenu.classList.remove('open');
-            menu.classList.remove('open');
+            parent.classList.remove('open');
           } else {
             document.querySelectorAll('.menu-item-submenu').forEach(s => s.classList.remove('open'));
             document.querySelectorAll('.menu-item-parent').forEach(p => p.classList.remove('open'));
             submenu.classList.add('open');
-            menu.classList.add('open');
+            parent.classList.add('open');
           }
         }
-      };
-      menu.addEventListener('click', toggleParent);
-    });
+        return;
+      }
+
+      const link = e.target.closest('a.menu-item');
+      if (link && sidebarEl.contains(link)) {
+        handleMenuNavigate(link, e);
+      }
+    };
+
+    const sidebarNav = document.getElementById('main-sidebar');
+    sidebarNav?.addEventListener('click', handleSidebarInteraction);
 
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
       if (link.classList.contains("menu-item") || link.classList.contains("app-brand")) return;

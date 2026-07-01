@@ -3795,6 +3795,7 @@ input:checked + .slider.round:before {
   flex: 1;
   min-height: 0;
   width: 100%;
+  position: relative;
 }
 
 .btn-ghost {
@@ -4155,17 +4156,19 @@ input:checked + .slider.round:before {
     transform: translateX(-100%);
     transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: var(--shadow-lg);
-    z-index: 250;
+    z-index: 1000;
     padding: 10px 8px calc(12px + env(safe-area-inset-bottom, 0px));
     overflow: hidden;
     pointer-events: none;
     -webkit-transform: translateX(-100%);
+    isolation: isolate;
   }
 
   .sidebar.open {
     transform: translateX(0);
     -webkit-transform: translateX(0);
     pointer-events: auto;
+    touch-action: pan-y;
   }
 
   .sidebar-menu {
@@ -4177,6 +4180,7 @@ input:checked + .slider.round:before {
     overscroll-behavior: contain;
     touch-action: pan-y;
     padding-right: 2px;
+    pointer-events: auto;
   }
 
   .sidebar-menu .menu-item,
@@ -4186,6 +4190,8 @@ input:checked + .slider.round:before {
     margin: 0 2px;
     width: calc(100% - 4px);
     box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .sidebar-menu .menu-item-submenu .menu-item {
@@ -4194,25 +4200,30 @@ input:checked + .slider.round:before {
   }
 
   .sidebar-backdrop.active {
-    left: min(300px, 88vw);
     top: 64px;
-    z-index: 150;
+    right: 0;
+    bottom: 0;
+    left: min(300px, 88vw);
+    z-index: 900;
   }
 
   .mobile-menu-btn {
-    z-index: 260;
+    z-index: 1100;
     position: relative;
   }
 
-  html.nav-locked,
-  html.nav-locked body {
+  html.nav-open .main-layout {
     overflow: hidden;
-    height: 100%;
+    pointer-events: none;
+    touch-action: none;
   }
 
-  html.nav-locked .sidebar-menu {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
+  html.nav-open .sidebar.open,
+  html.nav-open .sidebar.open .sidebar-menu,
+  html.nav-open .sidebar.open .menu-item,
+  html.nav-open .sidebar.open .menu-item-parent {
+    pointer-events: auto;
+    touch-action: manipulation;
   }
 
   .main-layout {
