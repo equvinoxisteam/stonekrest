@@ -584,13 +584,19 @@ const initApp = () => {
       lucide.createIcons();
     });
 
-    const openMoveMoneyDrawer = () => {
+    const openMoveMoneyDrawer = (e) => {
+      e?.preventDefault?.();
+      e?.stopPropagation?.();
+      closeMobileSidebar();
+      document.documentElement.classList.remove('nav-open');
       moneyDrawerOverlay?.classList.add("active");
+      document.body.style.overflow = 'hidden';
       const mainScreen = document.getElementById("drawer-screen-main");
       if (mainScreen) {
         document.querySelectorAll(".drawer-screen").forEach(s => s.classList.remove("active"));
         mainScreen.classList.add("active");
       }
+      if (typeof lucide !== "undefined") lucide.createIcons();
     };
 
     btnMoveMoney?.addEventListener("click", openMoveMoneyDrawer);
@@ -606,7 +612,10 @@ const initApp = () => {
       closeMobileSidebar();
     });
 
-    const closeDrawer = () => moneyDrawerOverlay?.classList.remove("active");
+    const closeDrawer = () => {
+      moneyDrawerOverlay?.classList.remove("active");
+      document.body.style.overflow = '';
+    };
 
     btnCloseDrawer?.addEventListener("click", closeDrawer);
     document.querySelectorAll(".close-drawer-btn").forEach(btn => btn.addEventListener("click", closeDrawer));
@@ -649,8 +658,11 @@ const initApp = () => {
       showToast("Transaction export started — CSV will download shortly.", "green");
     });
 
-    document.getElementById("btn-issue-card")?.addEventListener("click", () => {
-      showToast("Virtual card issued successfully.", "green");
+    initializeIssueCardFlow(state, {
+      renderCards,
+      formatCurrency,
+      showToast,
+      switchToTab
     });
 
     document.getElementById("btn-copy-card")?.addEventListener("click", () => {
@@ -1228,21 +1240,66 @@ const initApp = () => {
     const c = document.getElementById("cards-list-container");
     if (!c) return;
     c.innerHTML = "";
+    if (!state.cards.length) {
+      c.innerHTML = `
+        <div class="cards-empty-state grid-card">
+          <div class="card-body">
+            <p class="text-secondary">No cards yet. Issue a virtual or physical debit card to get started.</p>
+            <button type="button" class="btn btn-primary btn-open-issue-card" style="margin-top:12px">
+              <i data-lucide="plus"></i> Issue New Card
+            </button>
+          </div>
+        </div>`;
+      if (typeof lucide !== "undefined") lucide.createIcons();
+      return;
+    }
     state.cards.forEach(card => {
       const el = document.createElement("div");
-      el.className = "issuer-card-item";
-      const pct = (card.spend / card.limit) * 100;
+      el.className = `issuer-card-item ${card.type === "physical" ? "issuer-card-physical" : "issuer-card-virtual"}`;
+      const pct = Math.min(100, (card.spend / card.limit) * 100);
+      const typeLabel = card.type === "physical" ? "Physical" : "Virtual";
       el.innerHTML = `
-        <div class="issuer-card-top"><div class="font-medium text-white">${card.label}</div><span class="issuer-status-badge ${card.frozen ? 'frozen' : ''}">${card.frozen ? 'Frozen' : 'Active'}</span></div>
-        <div class="issuer-card-middle"><div class="issuer-card-number">•••• •••• •••• ${card.last4}</div><div class="account-number-string">Holder: ${card.holder}</div></div>
-        <div class="issuer-card-bottom"><div class="card-quick-stats" style="width: 100%;">
-          <div class="card-stat-row"><span class="text-secondary">Spend Limit</span><span>${formatCurrency(card.spend)} / ${formatCurrency(card.limit)}</span></div>
-          <div class="progress-bar-container"><div class="progress-bar" style="width: ${pct}%;"></div></div>
-          <div class="card-quick-actions"><button class="btn btn-secondary btn-sm" onclick="alert('Card Details Copied!')">Copy Details</button></div>
-        </div></div>
+        <div class="issuer-card-top">
+          <div>
+            <div class="font-medium text-white">${card.label}</div>
+            <span class="issuer-type-badge">${typeLabel}</span>
+          </div>
+          <span class="issuer-status-badge ${card.frozen ? "frozen" : ""}">${card.frozen ? "Frozen" : "Active"}</span>
+        </div>
+        <div class="issuer-card-middle">
+          <div class="issuer-card-number">•••• •••• •••• ${card.last4}</div>
+          <div class="account-number-string">Holder: ${card.holder}</div>
+        </div>
+        <div class="issuer-card-bottom">
+          <div class="card-quick-stats" style="width: 100%;">
+            <div class="card-stat-row"><span class="text-secondary">Spend / Limit</span><span>${formatCurrency(card.spend)} / ${formatCurrency(card.limit)}</span></div>
+            <div class="progress-bar-container"><div class="progress-bar" style="width: ${pct}%;"></div></div>
+            <div class="card-quick-actions">
+              <button type="button" class="btn btn-secondary btn-sm btn-card-copy" data-last4="${card.last4}">Copy Details</button>
+              <button type="button" class="btn btn-secondary btn-sm btn-card-freeze" data-card-id="${card.id}">${card.frozen ? "Unfreeze" : "Freeze"}</button>
+            </div>
+          </div>
+        </div>
       `;
       c.appendChild(el);
     });
+    c.querySelectorAll(".btn-card-copy").forEach(btn => {
+      btn.addEventListener("click", () => {
+        showToast(`Card •••• ${btn.getAttribute("data-last4")} details copied.`, "green");
+      });
+    });
+    c.querySelectorAll(".btn-card-freeze").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-card-id");
+        const card = state.cards.find(x => x.id === id);
+        if (card) {
+          card.frozen = !card.frozen;
+          renderCards();
+          showToast(card.frozen ? "Card frozen." : "Card unfrozen.", card.frozen ? "default" : "green");
+        }
+      });
+    });
+    if (typeof lucide !== "undefined") lucide.createIcons();
   }
 
   function renderAccounts() {
@@ -1412,6 +1469,183 @@ function initializeEquvinoxisPayments() {
   document.getElementById('pay-netbanking')?.addEventListener('click', simulatePayment);
 
   setupCheckoutTabs();
+}
+
+// --- Issue Card flow ---
+const ISSUE_CARD_RULES = {
+  maxCards: 10,
+  maxPhysical: 5,
+  minLimit: 10000,
+  maxLimit: 5000000,
+  labelMin: 3,
+  labelMax: 40
+};
+
+let issueCardDeps = null;
+
+function openIssueCardModal() {
+  const modal = document.getElementById("issue-card-modal");
+  if (!modal) return;
+  resetIssueCardForm();
+  modal.classList.remove("hidden");
+  modal.setAttribute("aria-hidden", "false");
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  document.getElementById("card-label")?.focus();
+  if (typeof lucide !== "undefined") lucide.createIcons();
+}
+
+function closeIssueCardModal() {
+  const modal = document.getElementById("issue-card-modal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.setAttribute("aria-hidden", "true");
+  modal.style.display = "none";
+  document.body.style.overflow = "";
+}
+
+function resetIssueCardForm() {
+  const form = document.getElementById("issue-card-form");
+  form?.reset();
+  document.getElementById("card-limit").value = "250000";
+  clearIssueCardErrors();
+  updateIssueCardPreview();
+}
+
+function clearIssueCardErrors() {
+  document.querySelectorAll(".issue-card-form .field-error").forEach(el => {
+    el.textContent = "";
+    el.classList.add("hidden");
+  });
+  document.querySelectorAll(".issue-card-form input, .issue-card-form select").forEach(el => {
+    el.classList.remove("input-invalid");
+  });
+}
+
+function setIssueCardError(fieldId, message) {
+  const input = document.getElementById(fieldId);
+  const err = document.getElementById(`err-${fieldId}`);
+  if (input) input.classList.add("input-invalid");
+  if (err) {
+    err.textContent = message;
+    err.classList.remove("hidden");
+  }
+}
+
+function validateIssueCardForm(state) {
+  clearIssueCardErrors();
+  let valid = true;
+
+  const label = (document.getElementById("card-label")?.value || "").trim();
+  const holder = (document.getElementById("card-holder")?.value || "").trim();
+  const type = document.getElementById("card-type")?.value || "virtual";
+  const limit = Number(document.getElementById("card-limit")?.value);
+
+  if (label.length < ISSUE_CARD_RULES.labelMin || label.length > ISSUE_CARD_RULES.labelMax) {
+    setIssueCardError("card-label", `Label must be ${ISSUE_CARD_RULES.labelMin}–${ISSUE_CARD_RULES.labelMax} characters.`);
+    valid = false;
+  }
+
+  if (!/^[A-Za-z][A-Za-z\s.'-]{0,48}$/.test(holder) || holder.length < 2) {
+    setIssueCardError("card-holder", "Enter a valid cardholder name (letters only, min 2 characters).");
+    valid = false;
+  }
+
+  if (!Number.isFinite(limit) || limit < ISSUE_CARD_RULES.minLimit || limit > ISSUE_CARD_RULES.maxLimit) {
+    setIssueCardError("card-limit", `Limit must be between ₹${ISSUE_CARD_RULES.minLimit.toLocaleString("en-IN")} and ₹${ISSUE_CARD_RULES.maxLimit.toLocaleString("en-IN")}.`);
+    valid = false;
+  }
+
+  if (state.cards.length >= ISSUE_CARD_RULES.maxCards) {
+    issueCardDeps?.showToast(`Maximum ${ISSUE_CARD_RULES.maxCards} cards allowed per organization.`, "default");
+    valid = false;
+  }
+
+  const physicalCount = state.cards.filter(c => c.type === "physical").length;
+  if (type === "physical" && physicalCount >= ISSUE_CARD_RULES.maxPhysical) {
+    issueCardDeps?.showToast(`Maximum ${ISSUE_CARD_RULES.maxPhysical} physical cards allowed.`, "default");
+    valid = false;
+  }
+
+  return valid ? { label, holder, type, limit } : null;
+}
+
+function updateIssueCardPreview() {
+  const label = (document.getElementById("card-label")?.value || "New Card").trim();
+  const holder = (document.getElementById("card-holder")?.value || "Aniketh").trim().toUpperCase() || "ANIKETH";
+  const type = document.getElementById("card-type")?.value || "virtual";
+  const limit = Number(document.getElementById("card-limit")?.value) || 250000;
+  const fmt = issueCardDeps?.formatCurrency || ((n) => `₹${n.toLocaleString("en-IN")}`);
+
+  const previewLabel = document.getElementById("preview-card-type");
+  const previewHolder = document.getElementById("preview-card-holder");
+  const previewLimit = document.getElementById("preview-card-limit");
+  if (previewLabel) previewLabel.textContent = type === "physical" ? "Metal Physical" : "Virtual";
+  if (previewHolder) previewHolder.textContent = holder.slice(0, 22);
+  if (previewLimit) previewLimit.textContent = fmt(limit);
+}
+
+function initializeIssueCardFlow(state, deps) {
+  issueCardDeps = deps;
+  const modal = document.getElementById("issue-card-modal");
+  const form = document.getElementById("issue-card-form");
+  if (!modal || !form) return;
+
+  if (!document.documentElement.dataset.issueCardBound) {
+    document.documentElement.dataset.issueCardBound = "1";
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".btn-open-issue-card")) {
+        e.preventDefault();
+        openIssueCardModal();
+      }
+    });
+  }
+
+  document.getElementById("close-issue-card-modal")?.addEventListener("click", closeIssueCardModal);
+  document.getElementById("cancel-issue-card")?.addEventListener("click", closeIssueCardModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeIssueCardModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) closeIssueCardModal();
+  });
+
+  ["card-label", "card-holder", "card-type", "card-limit"].forEach(id => {
+    document.getElementById(id)?.addEventListener("input", updateIssueCardPreview);
+    document.getElementById(id)?.addEventListener("change", updateIssueCardPreview);
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = validateIssueCardForm(state);
+    if (!data) return;
+
+    const last4 = String(Math.floor(1000 + Math.random() * 9000));
+    const newCard = {
+      id: `c_${Date.now()}`,
+      label: data.label,
+      type: data.type,
+      last4,
+      holder: data.holder,
+      limit: data.limit,
+      spend: 0,
+      frozen: false
+    };
+
+    state.cards.unshift(newCard);
+    deps.renderCards();
+    closeIssueCardModal();
+
+    const msg = data.type === "virtual"
+      ? `Virtual card "${data.label}" created — ending ${last4}.`
+      : `Physical card "${data.label}" ordered — ships in 5–7 days.`;
+    deps.showToast(msg, "green");
+
+    window.location.hash = "cards";
+    if (deps.switchToTab) deps.switchToTab("cards");
+  });
 }
 
 // --- INITIALIZE APP ---

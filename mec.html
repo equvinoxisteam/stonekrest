@@ -735,7 +735,7 @@
               <h1>Debit Cards</h1>
               <p class="subtitle">Issue, manage, and freeze physical or virtual debit cards instantly.</p>
             </div>
-            <button class="btn btn-primary" id="btn-issue-card">
+            <button class="btn btn-primary btn-open-issue-card" id="btn-issue-card">
               <i data-lucide="plus"></i> Issue New Card
             </button>
           </div>
@@ -1871,7 +1871,7 @@
               <h1>Credit Card</h1>
               <p class="subtitle">Manage your company credit cards.</p>
             </div>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary btn-open-issue-card" id="btn-issue-card-credit">
               <i data-lucide="plus"></i> Issue New Card
             </button>
           </div>
@@ -3038,6 +3038,95 @@
             <i data-lucide="refresh-cw"></i> Regenerate API Key
           </button>
         </div>
+      </div>
+    </div>
+
+    </div>
+
+    <!-- Issue Card Modal -->
+    <div id="issue-card-modal" class="issue-card-modal hidden" aria-hidden="true">
+      <div class="issue-card-modal-panel" role="dialog" aria-labelledby="issue-card-title" aria-modal="true">
+        <div class="issue-card-modal-header">
+          <div>
+            <span class="issue-card-modal-badge">Debit Card</span>
+            <h2 id="issue-card-title">Issue New Card</h2>
+          </div>
+          <button type="button" id="close-issue-card-modal" class="issue-card-modal-close" aria-label="Close">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <form id="issue-card-form" class="issue-card-form" novalidate>
+          <div class="issue-card-modal-body">
+            <div class="form-group">
+              <label for="card-label">Card label <span class="req">*</span></label>
+              <input type="text" id="card-label" name="card-label" placeholder="e.g. Marketing Spend" maxlength="40" autocomplete="off" />
+              <p class="field-hint" id="hint-card-label">3–40 characters. Used to identify this card in your dashboard.</p>
+              <p class="field-error hidden" id="err-card-label"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="card-holder">Cardholder name <span class="req">*</span></label>
+              <input type="text" id="card-holder" name="card-holder" placeholder="e.g. Aniketh" maxlength="50" autocomplete="name" />
+              <p class="field-error hidden" id="err-card-holder"></p>
+            </div>
+
+            <div class="form-row-2 issue-card-row">
+              <div class="form-group">
+                <label for="card-type">Card type <span class="req">*</span></label>
+                <select id="card-type" name="card-type">
+                  <option value="virtual">Virtual — instant</option>
+                  <option value="physical">Physical — 5–7 days</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="card-limit">Monthly limit (INR) <span class="req">*</span></label>
+                <input type="number" id="card-limit" name="card-limit" min="10000" max="5000000" step="1000" value="250000" />
+                <p class="field-error hidden" id="err-card-limit"></p>
+              </div>
+            </div>
+
+            <div class="issue-card-rules">
+              <h3>Issuance rules</h3>
+              <ul>
+                <li>Maximum <strong>10 cards</strong> per organization (demo)</li>
+                <li>Spend limit between <strong>₹10,000</strong> and <strong>₹50,00,000</strong> / month</li>
+                <li>Cardholder name: letters and spaces only</li>
+                <li>Virtual cards activate immediately; physical cards ship to registered address</li>
+              </ul>
+            </div>
+
+            <div class="issue-card-preview-wrap">
+              <span class="issue-card-preview-label">Preview</span>
+              <div class="issue-card-preview sk-visa-card sk-metal-card" id="issue-card-preview">
+                <div class="sk-metal-shine" aria-hidden="true"></div>
+                <div class="sk-visa-top">
+                  <div class="sk-visa-chip sk-metal-chip" aria-hidden="true"></div>
+                  <span class="sk-visa-type" id="preview-card-type">Virtual</span>
+                </div>
+                <div class="sk-visa-number" id="preview-card-number">4532 •••• •••• ••••</div>
+                <div class="sk-visa-bottom">
+                  <div class="sk-visa-holder">
+                    <span class="sk-visa-label">Cardholder</span>
+                    <span class="sk-visa-name" id="preview-card-holder">ANIKETH</span>
+                  </div>
+                  <div class="sk-visa-expiry">
+                    <span class="sk-visa-label">Limit</span>
+                    <span class="sk-visa-exp" id="preview-card-limit">₹2,50,000</span>
+                  </div>
+                  <div class="sk-visa-logo" aria-label="Visa">VISA</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="issue-card-modal-footer">
+            <button type="button" class="btn btn-secondary" id="cancel-issue-card">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submit-issue-card">
+              <i data-lucide="credit-card"></i> Create Card
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 

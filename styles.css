@@ -6444,3 +6444,311 @@ input:checked + .slider.round:before {
   background: #141414;
   color: #f5f5f5;
 }
+
+/* Issue Card Modal */
+.issue-card-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.issue-card-modal.hidden {
+  display: none !important;
+}
+
+.issue-card-modal-panel {
+  width: 100%;
+  max-width: 640px;
+  max-height: min(92vh, 900px);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(165deg, #1a1a1a 0%, #0d0d0d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.issue-card-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.issue-card-modal-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0, 209, 102, 0.12);
+  border: 1px solid rgba(0, 209, 102, 0.25);
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.issue-card-modal-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.issue-card-modal-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #a3a3a3;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.issue-card-modal-close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.issue-card-form {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.issue-card-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.issue-card-form .form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 8px;
+}
+
+.issue-card-form .form-group label .req {
+  color: #f87171;
+}
+
+.issue-card-form .form-group input,
+.issue-card-form .form-group select {
+  width: 100%;
+  background: #0a0a0a;
+  color: #f5f5f5;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.issue-card-form .form-group input:focus,
+.issue-card-form .form-group select:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 209, 102, 0.12);
+}
+
+.issue-card-form .form-group input.input-invalid,
+.issue-card-form .form-group select.input-invalid {
+  border-color: #f87171;
+  box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.15);
+}
+
+.issue-card-form .field-hint {
+  font-size: 12px;
+  color: #737373;
+  margin: 6px 0 0;
+  line-height: 1.4;
+}
+
+.issue-card-form .field-error {
+  font-size: 12px;
+  color: #f87171;
+  margin: 6px 0 0;
+  line-height: 1.4;
+}
+
+.issue-card-form .field-error.hidden {
+  display: none;
+}
+
+.issue-card-row {
+  margin-top: 4px;
+}
+
+.issue-card-rules {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+.issue-card-rules h3 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a3a3a3;
+  margin: 0 0 10px;
+}
+
+.issue-card-rules ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #d4d4d4;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.issue-card-rules li + li {
+  margin-top: 6px;
+}
+
+.issue-card-preview-wrap {
+  margin-top: 22px;
+}
+
+.issue-card-preview-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #737373;
+  margin-bottom: 10px;
+}
+
+.issue-card-preview {
+  max-width: 360px;
+  margin: 0 auto;
+  transform: scale(0.95);
+  transform-origin: center top;
+}
+
+.issue-card-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.issue-card-modal-footer .btn {
+  min-width: 120px;
+}
+
+.cards-empty-state {
+  text-align: center;
+  padding: 32px 24px;
+}
+
+.cards-empty-state .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.issuer-type-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 7px;
+  border-radius: 4px;
+  margin-top: 6px;
+  background: rgba(139, 92, 246, 0.15);
+  color: #c4b5fd;
+}
+
+.issuer-card-physical .issuer-type-badge {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fcd34d;
+}
+
+.issuer-card-item {
+  height: auto;
+  min-height: 250px;
+}
+
+.issuer-card-top {
+  align-items: flex-start;
+}
+
+.card-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .issue-card-modal-panel {
+    max-height: 96vh;
+    border-radius: 14px;
+  }
+
+  .issue-card-modal-header,
+  .issue-card-modal-body,
+  .issue-card-modal-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .issue-card-modal-header h2 {
+    font-size: 18px;
+  }
+
+  .issue-card-row.form-row-2 {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .issue-card-preview {
+    max-width: 100%;
+    transform: scale(1);
+  }
+
+  .issue-card-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .issue-card-modal-footer .btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .panel-header-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .panel-header-row .btn-open-issue-card {
+    width: 100%;
+    justify-content: center;
+  }
+}
